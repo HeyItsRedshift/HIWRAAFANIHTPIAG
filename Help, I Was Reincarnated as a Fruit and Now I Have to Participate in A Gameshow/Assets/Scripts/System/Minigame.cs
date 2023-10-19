@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable] 
 public class Minigame
 {
- 
+ //Variables that defnie the "Minigame" type
         public string minigameName;
         public bool selected;
         public int highScore;

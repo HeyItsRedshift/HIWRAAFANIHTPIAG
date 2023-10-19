@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 808052725}
   - component: {fileID: 808052724}
   - component: {fileID: 808052723}
+  - component: {fileID: 808052726}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1243,6 +1244,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808052721}
   m_CullTransparentMesh: 1
+--- !u!114 &808052726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808052721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3b3c115c129184abeb92f3b24af82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &837207724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,6 +2982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431614007}
   - component: {fileID: 1431614008}
+  - component: {fileID: 1431614009}
   m_Layer: 0
   m_Name: HeadsUp
   m_TagString: Untagged
@@ -3044,6 +3058,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1431614009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431614006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3b3c115c129184abeb92f3b24af82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1518275243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,6 +3558,7 @@ GameObject:
   - component: {fileID: 1997861173}
   - component: {fileID: 1997861176}
   - component: {fileID: 1997861175}
+  - component: {fileID: 1997861177}
   - component: {fileID: 1997861174}
   m_Layer: 5
   m_Name: PlayButton
@@ -3654,6 +3681,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997861172}
   m_CullTransparentMesh: 1
+--- !u!114 &1997861177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997861172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3b3c115c129184abeb92f3b24af82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

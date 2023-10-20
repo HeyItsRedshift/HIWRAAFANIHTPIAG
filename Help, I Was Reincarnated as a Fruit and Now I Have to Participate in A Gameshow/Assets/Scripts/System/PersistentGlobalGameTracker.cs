@@ -25,12 +25,26 @@ public class PersistentGlobalGameTracker: MonoBehaviour
     //Creates an empty list to add the slected games later on for possible itterations, when the UpdateSelectedMinigames() Method is called
    List<Minigame> selectedMinigames = new List<Minigame> { };
 
+    //Playernames list to be used when adding players and for itterations. (Add players by using " teamAPlayerNames.Add("name");";"
+    
+    /*  Itterate through the list with this:
+     
+       foreach (string playerName in teamAPlayerNames)
+            {
+                Debug.Log(playerName);
+            } 
+    */
+
+    List<string> teamAPlayerNames = new List<string> { };
+    List<string> teamBPlayerNames = new List<string> { };
+
+
     private void Awake()
     {
         persistentGlobalGameTracke = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
         //Keeps the gameobject holding this script active between scenes
         DontDestroyOnLoad(this.gameObject);
-
+        teamAPlayerNames.Add("Player 1");
         allMinigames.Add(minigame1);
         allMinigames.Add(minigame2);
         allMinigames.Add(minigame3);
@@ -40,7 +54,12 @@ public class PersistentGlobalGameTracker: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (test) { UpdateSelectedMinigames(); minigame1.highScore = 100; };
+     
+            foreach (string playerName in teamAPlayerNames)
+            {
+                Debug.Log(playerName);
+            }
+       
     }
 
     public  void UpdateSelectedMinigames() 

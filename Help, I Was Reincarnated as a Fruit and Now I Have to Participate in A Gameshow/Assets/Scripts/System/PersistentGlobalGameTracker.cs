@@ -6,7 +6,7 @@ using UnityEngine;
 public class PersistentGlobalGameTracker: MonoBehaviour
 {
     //This Script will be storing and handling all game information that is persistent throughout the scenes, like Scores, remaining rounds, MVPS, a list of data type minigame and each minigame, etc
-    public static PersistentGlobalGameTracker persistentGlobalGameTracke;
+    public static PersistentGlobalGameTracker persistentGlobalGameTracker;
     [SerializeField] bool test=false;
     [SerializeField] private int currentRound = 0;
     [SerializeField] private int numberOfRounds = 0;
@@ -35,16 +35,15 @@ public class PersistentGlobalGameTracker: MonoBehaviour
             } 
     */
 
-    List<string> teamAPlayerNames = new List<string> { };
-    List<string> teamBPlayerNames = new List<string> { };
+   public List<string> teamAPlayerNames = new List<string> { };
+   public List<string> teamBPlayerNames = new List<string> { };
 
 
     private void Awake()
     {
-        persistentGlobalGameTracke = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
+        persistentGlobalGameTracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
         //Keeps the gameobject holding this script active between scenes
         DontDestroyOnLoad(this.gameObject);
-        teamAPlayerNames.Add("Player 1");
         allMinigames.Add(minigame1);
         allMinigames.Add(minigame2);
         allMinigames.Add(minigame3);
@@ -64,6 +63,8 @@ public class PersistentGlobalGameTracker: MonoBehaviour
 
     public  void UpdateSelectedMinigames() 
     {
+        selectedMinigames.Clear();
+
         foreach (Minigame minigame in allMinigames)
         {
             if (minigame.selected && !selectedMinigames.Contains(minigame))

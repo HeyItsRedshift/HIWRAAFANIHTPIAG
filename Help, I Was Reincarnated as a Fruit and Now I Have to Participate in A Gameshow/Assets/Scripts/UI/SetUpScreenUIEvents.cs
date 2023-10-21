@@ -10,4 +10,10 @@ public class SetUpScreenUIEvents : MonoBehaviour
 
     public void OnPressTeams() { }
 
+    public void StartGame()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }

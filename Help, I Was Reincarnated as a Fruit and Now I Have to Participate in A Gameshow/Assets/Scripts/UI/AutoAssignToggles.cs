@@ -30,6 +30,7 @@ public class AutoAssignToggles : MonoBehaviour
         {
             PersistentGlobalGameTracker.tracker.minigame3.selected = toggle.isOn;
         }
+     
     }
 
     public bool HasTargetNumber(int targetNumber)

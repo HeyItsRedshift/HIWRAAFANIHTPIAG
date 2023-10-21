@@ -15,7 +15,7 @@ public class ArrowsForRounds : MonoBehaviour
     private float timerTarget = 0;
    [SerializeField] private GameObject roundsCounter;
     private float timerPressDelay = 0.3f; //This controls how many times you can add or remove a round per second
-    private int rounds;
+    private int rounds =1;
 
     // Start is called before the first frame update
     void Start()
@@ -47,12 +47,17 @@ public class ArrowsForRounds : MonoBehaviour
                 {
                     //play left button animation
                     leftArrow.onClick.Invoke();
+                    leftArrow.gameObject.GetComponent<Animator>().SetTrigger("triggerMeTimbers");
+
+
                     //  DecreaseRounds();
                     timerTarget = Time.time + timerPressDelay;
 
                 }
                 else if (horizontalInput > 0)
                 {
+                    rightArrow.gameObject.GetComponent<Animator>().SetTrigger("triggerMeTimbers");
+
                     //play right button animation
                     rightArrow.onClick.Invoke();
                    // IncreaseRounds();
@@ -69,13 +74,18 @@ public class ArrowsForRounds : MonoBehaviour
     }
     public void IncreaseRounds()
     {
+        
         rounds++;
         roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
     }
     public void DecreaseRounds()
     {
-        rounds--;
-        roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
+        if (rounds>1)
+        {
+            rounds--;
+            roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
+        }
+       
 
 
     }

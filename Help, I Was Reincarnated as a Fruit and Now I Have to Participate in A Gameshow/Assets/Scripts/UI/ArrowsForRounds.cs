@@ -10,10 +10,11 @@ using TMPro;
 
 public class ArrowsForRounds : MonoBehaviour
 {
-    private float timerTarget = 0; // Adjust this value to control the rate of changes.
+    public Button leftArrow;
+    public Button rightArrow;
+    private float timerTarget = 0;
    [SerializeField] private GameObject roundsCounter;
-    private float timerBetweenButtonPresses = 0 ; // Adjust this value to control the rate of changes.
-    private float timerPressDelay = 0.3f;
+    private float timerPressDelay = 0.3f; //This controls how many times you can add or remove a round per second
     private int rounds;
 
     // Start is called before the first frame update
@@ -25,7 +26,6 @@ public class ArrowsForRounds : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timerBetweenButtonPresses = timerBetweenButtonPresses - Time.deltaTime;
    
 
     }
@@ -46,14 +46,16 @@ public class ArrowsForRounds : MonoBehaviour
                 if (horizontalInput < 0)
                 {
                     //play left button animation
-                    DecreaseRounds();
+                    leftArrow.onClick.Invoke();
+                    //  DecreaseRounds();
                     timerTarget = Time.time + timerPressDelay;
 
                 }
                 else if (horizontalInput > 0)
                 {
                     //play right button animation
-                    IncreaseRounds();
+                    rightArrow.onClick.Invoke();
+                   // IncreaseRounds();
                     timerTarget = Time.time + timerPressDelay;
 
                 }
@@ -64,49 +66,23 @@ public class ArrowsForRounds : MonoBehaviour
         }
 
 
-        /*
-         * Old one might delete later -> using Time.time for more accurate timer results
-         *
-        if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("RoundsButton"))
-        {
-            float horizontalInputOut = Input.GetAxis("Horizontal");
-
-            if (horizontalInputOut == 0 && timerBetweenButtonPresses>0) { timerBetweenButtonPresses = 0; }
-
-
-            if (timerBetweenButtonPresses <= 0)
-            {
-                float horizontalInput = Input.GetAxis("Horizontal");
-
-                if (horizontalInput < 0)
-                {
-                    DecreaseRounds();
-                    timerBetweenButtonPresses = timerPressDelay;
-
-                }
-                else if (horizontalInput > 0)
-                {
-                    IncreaseRounds();
-                    timerBetweenButtonPresses = timerPressDelay;
-
-                }
-
-
-            }
-           
-        } */
     }
-    void IncreaseRounds()
+    public void IncreaseRounds()
     {
         rounds++;
         roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
     }
-    void DecreaseRounds()
+    public void DecreaseRounds()
     {
         rounds--;
         roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
 
 
+    }
+   void PressButton()
+    {
+        rounds++;
+        roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
     }
 }
 

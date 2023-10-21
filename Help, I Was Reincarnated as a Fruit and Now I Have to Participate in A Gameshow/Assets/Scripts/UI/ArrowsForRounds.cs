@@ -10,6 +10,7 @@ using TMPro;
 
 public class ArrowsForRounds : MonoBehaviour
 {
+    
     public Button leftArrow;
     public Button rightArrow;
     private float timerTarget = 0;
@@ -32,7 +33,7 @@ public class ArrowsForRounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Input.GetAxis("Horizontal"));
+        rounds++;
         if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("RoundsButton"))
         {
             float horizontalInputOut = Input.GetAxis("Horizontal");
@@ -74,25 +75,18 @@ public class ArrowsForRounds : MonoBehaviour
     }
     public void IncreaseRounds()
     {
-        
-        rounds++;
-        roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
+
+       PersistentGlobalGameTracker.tracker.IncreaseRounds();
+
     }
     public void DecreaseRounds()
     {
-        if (rounds>1)
-        {
-            rounds--;
-            roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
-        }
+
+        PersistentGlobalGameTracker.tracker.DecreaseRounds();
+
+    }
+ 
        
-
-
-    }
-   void PressButton()
-    {
-        rounds++;
-        roundsCounter.GetComponent<TextMeshProUGUI>().text = rounds.ToString();
-    }
+   
 }
 

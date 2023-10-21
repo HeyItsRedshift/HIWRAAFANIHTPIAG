@@ -16,5 +16,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("QUIT!");
+
+       // Access the persistentGlobal tracker data from anywhere by using this reference: PersistentGlobalGameTracker.tracker
     }
+
+
 }

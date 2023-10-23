@@ -563,19 +563,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 287014773}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1756857507}
-        m_TargetAssemblyTypeName: TeamNameChangeHandler, Assembly-CSharp
-        m_MethodName: ToggleKeyboardVisibility
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &287014773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,11 +1632,11 @@ Transform:
   m_GameObject: {fileID: 788544274}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.67572, y: 35.288025, z: -18.159594}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1845595463}
+  m_Father: {fileID: 884507875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &808052721
 GameObject:
@@ -2245,7 +2233,7 @@ RectTransform:
   - {fileID: 287014771}
   - {fileID: 1575276543}
   - {fileID: 1391674651}
-  - {fileID: 1756857508}
+  - {fileID: 788544277}
   m_Father: {fileID: 1845595463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4368,7 +4356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1391674651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4385,7 +4373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.57379, y: -393}
+  m_AnchoredPosition: {x: -0.57379, y: -584}
   m_SizeDelta: {x: 18.953, y: 16.976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391674652
@@ -4403,44 +4391,12 @@ MonoBehaviour:
   rectTransform: {fileID: 1391674651}
   keyPrefab: {fileID: 2632132680072319776, guid: 682b29a5cea592246b4631fedd5c68e0, type: 3}
   lines:
-  - keys:
-    - Q
-    - W
-    - E
-    - R
-    - T
-    - Y
-    - U
-    - I
-    - O
-    - P
-    - <-
-  - keys:
-    - A
-    - S
-    - D
-    - F
-    - G
-    - H
-    - J
-    - K
-    - L
-  - keys:
-    - CAPS
-    - Z
-    - X
-    - C
-    - V
-    - B
-    - N
-    - M
-  - keys:
-    - _
-  keyToLineRatio: 0.978
-  keyXSpacing: 0.141
-  keyYSpacingRatio: 0.032
-  keyboardWidth: 528
-  keyboardHeight: 193.1
+  - keys: QWERTYUOP
+  - keys: ASDFGHJKL
+  - keys: ZXCVBNM
+  keyToLineRatio: 0.894
+  keyXSpacing: 0.234
+  keyYSpacingRatio: 0.144
 --- !u!114 &1391674653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5257,59 +5213,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623419404}
   m_CullTransparentMesh: 1
---- !u!1 &1756857506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1756857508}
-  - component: {fileID: 1756857507}
-  m_Layer: 5
-  m_Name: TeamNameChangeController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1756857507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756857506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982bbc50a156e3945b5b7548a9947d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyboard: {fileID: 1391674652}
-  changeTeam1NameButton: {fileID: 287014772}
-  changeTeam1NameButtonText: {fileID: 1938995197}
-  changeTeam2NameButton: {fileID: 1575276544}
-  changeTeam2NameButtonText: {fileID: 547701484}
---- !u!224 &1756857508
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756857506}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 884507875}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1845595462
 GameObject:
   m_ObjectHideFlags: 0
@@ -5340,7 +5243,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 884507875}
-  - {fileID: 788544277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881668209

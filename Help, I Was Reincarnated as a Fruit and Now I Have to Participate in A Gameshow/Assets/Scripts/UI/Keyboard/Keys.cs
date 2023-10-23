@@ -1,45 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Keys : MonoBehaviour
 {
-    [Header("Elements")]
+    [Header(" Elements ")]
     [SerializeField] private TMP_Text keyText;
-
-    private string keyValue;
-    private bool isCapsActive = false;
+    private string keyValue;  // Changed to string
 
     public void SetKey(string key)
     {
         this.keyValue = key;
-        keyText.text = key;
+        keyText.text = keyValue;
 
-        // Adjust text size for special keys
         if (key == "CAPS")
         {
-            keyText.fontSize = keyText.fontSize * 0.6f; // Adjust as necessary
+            keyText.fontSize = keyText.fontSize * 0.5f;
+        }
+        else
+        {
+            keyText.fontSize = keyText.fontSize * 1f;
         }
     }
 
     public Button GetButton()
     {
         return GetComponent<Button>();
-    }
-
-    public void ToggleCaps()
-    {
-        if (keyValue.Length == 1)  // assuming other special keys will have length > 1
-        {
-            isCapsActive = !isCapsActive;
-            if (isCapsActive)
-            {
-                keyText.text = keyValue.ToUpper();
-            }
-            else
-            {
-                keyText.text = keyValue.ToLower();
-            }
-        }
     }
 }

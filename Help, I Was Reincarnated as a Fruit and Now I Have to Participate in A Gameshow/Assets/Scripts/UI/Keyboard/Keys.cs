@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Keys : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     [SerializeField] private TMP_Text keyText;
 
     public void SetKey(string key)
@@ -15,6 +16,10 @@ public class Keys : MonoBehaviour
 =======
     [Header(" Elements ")]
     [SerializeField] private TMP_Text keyText;
+=======
+    [Header(" Elements ")]
+    [SerializeField] private TMP_Text keyText;
+>>>>>>> parent of b337145 (Keyboard more functionality ++)
     private string keyValue;  // Changed to string
 
     public void SetKey(string key)
@@ -35,6 +40,9 @@ public class Keys : MonoBehaviour
     public Button GetButton()
     {
         return GetComponent<Button>();
+<<<<<<< HEAD
+>>>>>>> parent of b337145 (Keyboard more functionality ++)
+=======
 >>>>>>> parent of b337145 (Keyboard more functionality ++)
     }
 }

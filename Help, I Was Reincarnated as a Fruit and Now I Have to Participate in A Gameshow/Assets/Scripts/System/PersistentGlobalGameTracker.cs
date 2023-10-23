@@ -6,44 +6,39 @@ using TMPro;
 
 
 public class PersistentGlobalGameTracker : MonoBehaviour
-{
+{    
     //This Script will be storing and handling all game information that is persistent throughout the scenes, like Scores, remaining rounds, MVPS, a list of data type minigame and each minigame, etc
+
+    #region  System
     public static PersistentGlobalGameTracker tracker;
-    [HideInInspector] public GameObject counterHolder;
-    [SerializeField] bool test = false;
+    public HashSet<int> playerIDSList = new HashSet<int> { };
+    public HashSet<int> teamIDSList = new HashSet<int> { };
     [SerializeField] private int currentRound = 0;
     [SerializeField] private int numberOfRounds = 3;
-    [SerializeField] private int scoreTeamA = 0;
-    [SerializeField] private int scoreTeamB = 0;
-    [SerializeField] private string nameTeamA = "Team 1";
-    [SerializeField] private string nameTeamB = "Team 2";
+    [HideInInspector] public GameObject counterHolder;
+    #endregion
+
+
+
+    public List<TeamData> teamlist = new List<TeamData> { };
+
+
+    #region Minigames Related Variables 
     //Initialize minigames individually
-   public Minigame minigame1 = new Minigame("MiniGame1", true, 0, "none");
+    public Minigame minigame1 = new Minigame("MiniGame1", true, 0, "none");
     public Minigame minigame2 = new Minigame("MiniGame2", true, 0, "none");
     public Minigame minigame3 = new Minigame("MiniGame3", true, 0, "none");
-
-    //Creates an empty list to add all the games later on for possible itterations
+    //Creates an empty list that will hold all minigames.
     public List<Minigame> allMinigames = new List<Minigame> { };
-
     //Creates an empty list to add the slected games later on for possible itterations, when the UpdateSelectedMinigames() Method is called
-   [SerializeField] List<Minigame> selectedMinigames = new List<Minigame> { };
-
-    //Playernames list to be used when adding players and for itterations. (Add players by using " teamAPlayerNames.Add("name");";"
-
-    /*  Itterate through the list with this:
-     
-       foreach (string playerName in teamAPlayerNames)
-            {
-                Debug.Log(playerName);
-            } 
-    */
-
-    public List<string> teamAPlayerNames = new List<string> { };
-    public List<string> teamBPlayerNames = new List<string> { };
+    [SerializeField] List<Minigame> selectedMinigames = new List<Minigame> { };
+    #endregion
 
 
     private void Awake()
     {
+
+        
        
         tracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
         //Keeps the gameobject holding this script active between scenes
@@ -67,10 +62,7 @@ public class PersistentGlobalGameTracker : MonoBehaviour
             counterHolder.GetComponent<TextMeshProUGUI>().text = numberOfRounds.ToString();
         }
 
-        foreach (string playerName in teamAPlayerNames)
-        {
-            Debug.Log(playerName);
-        }
+      
         if (selectedMinigames.Count == 0)
         {
             foreach (Minigame minigame in allMinigames)
@@ -112,5 +104,39 @@ public class PersistentGlobalGameTracker : MonoBehaviour
         {
             numberOfRounds--;
         }
+    }
+
+    public int CreateNewPlayerOnTeam(TeamData team) 
+    {
+        int playerID ;
+
+        do
+        {
+            playerID = UnityEngine.Random.Range(00001, 99999);
+        }
+        while (!playerIDSList.Add(playerID)); // Checks if the number can be added to the HashSet, if it can, it will add the number to the HashSet (with the IDS), return true, and end the while loop
+
+        PlayerData newplayer = new PlayerData("New Player", playerID);
+        team.teamPlayers.Add(newplayer);
+
+        return playerID;
+
+    }
+
+    public int CreateNewTeam()
+    {
+        int teamID;
+
+        do
+        {
+            teamID = UnityEngine.Random.Range(00001, 99999);
+        }
+        while (!teamIDSList.Add(teamID)); // Checks if the number can be added to the HashSet, if it can, it will add the number to the HashSet (with the IDS), return true, and end the while loop
+
+        TeamData newTeam = new TeamData("New Team", teamID);
+        teamlist.Add(newTeam);
+
+        return teamID;
+
     }
 }

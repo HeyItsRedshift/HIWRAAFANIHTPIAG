@@ -4350,6 +4350,7 @@ GameObject:
   - component: {fileID: 1391674654}
   - component: {fileID: 1391674653}
   - component: {fileID: 1391674652}
+  - component: {fileID: 1391674655}
   m_Layer: 5
   m_Name: KeyBoard
   m_TagString: Untagged
@@ -4389,13 +4390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1391674651}
-  keyPrefab: {fileID: 4388912689598423407, guid: 682b29a5cea592246b4631fedd5c68e0, type: 3}
-  keyboardWidth: 727.9
-  keyboardHeight: 234.3
-  marginLeft: 0.093
-  marginRight: 0.213
-  marginTop: 0.029
-  marginBottom: 0.088
+  keyPrefab: {fileID: 2632132680072319776, guid: 682b29a5cea592246b4631fedd5c68e0, type: 3}
   lines:
   - keys:
     - Q
@@ -4432,6 +4427,8 @@ MonoBehaviour:
   keyToLineRatio: 0.936
   keyXSpacing: 0
   keyYSpacingRatio: 0
+  keyboardWidth: 727.9
+  keyboardHeight: 234.3
 --- !u!114 &1391674653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4439,7 +4436,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391674650}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4470,6 +4467,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391674650}
   m_CullTransparentMesh: 1
+--- !u!114 &1391674655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391674650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da47460a87c4e447b0777d501c1b2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: 
 --- !u!1 &1400085665
 GameObject:
   m_ObjectHideFlags: 0

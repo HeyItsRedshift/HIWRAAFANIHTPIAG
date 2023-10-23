@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 6304034814758946597}
   - component: {fileID: 8733922756690529416}
   - component: {fileID: 2632132680072319776}
+  - component: {fileID: 8420583325531437837}
   m_Layer: 5
   m_Name: Key
   m_TagString: Untagged
@@ -255,7 +256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6304034814758946597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8420583325531437837}
+        m_TargetAssemblyTypeName: KeyPressed, Assembly-CSharp
+        m_MethodName: PressedKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2632132680072319776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,3 +282,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 2860353023190446481}
+--- !u!114 &8420583325531437837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556616466705303215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e250d77c5be5a4bbc401a6cc6e48c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

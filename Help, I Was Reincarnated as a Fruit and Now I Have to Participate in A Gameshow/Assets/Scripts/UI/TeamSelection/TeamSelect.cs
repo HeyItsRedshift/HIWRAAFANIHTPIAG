@@ -22,7 +22,7 @@ public class TeamSelect : MonoBehaviour
     {
         TeamData currentTeam;
         currentTeam = this.gameObject.GetComponent<AddPlayerButtonReferences>().myTeam;
-       newplayerref = PersistentGlobalGameTracker.tracker.CreateNewPlayerOnTeam(currentTeam);
+      // newplayerref = PersistentGlobalGameTracker.tracker.CreateNewPlayerOnTeam(currentTeam);
 
 
     }

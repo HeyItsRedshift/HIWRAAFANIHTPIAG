@@ -1,6 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Keyboard : MonoBehaviour
 {
@@ -19,21 +20,16 @@ public class Keyboard : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float keyYSpacingRatio = 0.1f;
 
-    [Header("Keyboard Dimensions")]
-    [SerializeField] private float keyboardWidth = 500f;
-    [SerializeField] private float keyboardHeight = 300f;
+    [Header("Keyboard Margins")]
+    [SerializeField] private float topMargin;
+    [SerializeField] private float leftMargin;
+    [SerializeField] private float bottomMargin;
 
     private List<Keys> allKeys = new List<Keys>();
 
     void Start()
     {
-        rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);
         CreateKeys();
-    }
-
-    void Update()
-    {
-        rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);
         PlaceKeys();
     }
 
@@ -46,12 +42,6 @@ public class Keyboard : MonoBehaviour
                 string keyString = lines[i].keys[j];
                 Keys keyInstance = Instantiate(keyPrefab, rectTransform);
                 keyInstance.SetKey(keyString);
-
-                if (keyString == "CAPS")
-                {
-                    keyInstance.GetButton().onClick.AddListener(OnCapsPressed);
-                }
-
                 allKeys.Add(keyInstance);
             }
         }
@@ -60,7 +50,7 @@ public class Keyboard : MonoBehaviour
     private void PlaceKeys()
     {
         int lineCount = lines.Length;
-        float keyWidth = keyboardHeight * keyToLineRatio / (lineCount + 1);  // Added +1 for top margin
+        float keyWidth = (rectTransform.rect.width - leftMargin) * keyToLineRatio / lineCount;
         float keyHeight = keyWidth;
         float lineHeight = keyHeight + (keyWidth * keyYSpacingRatio);
         float xSpacing = keyXSpacing * keyWidth;
@@ -68,61 +58,22 @@ public class Keyboard : MonoBehaviour
         int currentKeyIndex = 0;
         for (int i = 0; i < lineCount; i++)
         {
-            float totalLineWidth = 0;
-
-            for (int k = 0; k < lines[i].keys.Length; k++)
-            {
-                float thisKeyWidth = keyWidth;
-                if (lines[i].keys[k] == "_") thisKeyWidth *= 2;
-                else if (lines[i].keys[k] == "<-") thisKeyWidth *= 1.5f;
-
-                totalLineWidth += thisKeyWidth + xSpacing;
-            }
-
-            totalLineWidth -= xSpacing;
-            float startX = -totalLineWidth / 2;
+            float halfKeyCount = (float)lines[i].keys.Length / 2;
+            float totalLineWidth = (keyWidth + xSpacing) * lines[i].keys.Length - xSpacing;
+            float startX = -totalLineWidth / 2 + keyWidth / 2 + leftMargin;
+            float lineY = rectTransform.rect.height / 2 - topMargin - (lineHeight / 2) - i * lineHeight;
 
             for (int j = 0; j < lines[i].keys.Length; j++)
             {
-                float thisKeyWidth = keyWidth;
-
-                if (lines[i].keys[j] == "_")
-                {
-                    thisKeyWidth *= 4;
-                    startX = -thisKeyWidth / 2;  // Center the space key
-                }
-                else if (lines[i].keys[j] == "<-")
-                {
-                    thisKeyWidth *= 1.5f;
-                }
-
-                float keyX = startX + (thisKeyWidth / 2);
-                startX += thisKeyWidth + xSpacing;
-
-                float lineY = (keyboardHeight / 2) - (lineHeight * (i + 1));  // Adjusted for top margin
-
+                float keyX = startX + j * (keyWidth + xSpacing);
+                Vector2 keyAnchoredPosition = new Vector2(keyX, lineY);
                 RectTransform keyRectTransform = allKeys[currentKeyIndex].GetComponent<RectTransform>();
-                keyRectTransform.anchoredPosition = new Vector2(keyX, lineY);
-                keyRectTransform.sizeDelta = new Vector2(thisKeyWidth, keyWidth);
-
+                keyRectTransform.anchoredPosition = keyAnchoredPosition;
+                keyRectTransform.sizeDelta = new Vector2(keyWidth, keyWidth);
                 currentKeyIndex++;
             }
         }
     }
-
-
-    private void OnCapsPressed()
-    {
-        foreach (var key in allKeys)
-        {
-            key.ToggleCaps();
-        }
-    }
-    public void ToggleKeyboard()
-    {
-        gameObject.SetActive(!gameObject.activeSelf);
-    }
-
 }
 
 [System.Serializable]

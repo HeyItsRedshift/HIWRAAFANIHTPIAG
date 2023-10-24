@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 9180094909610145939}
   - component: {fileID: 369763392827278053}
   - component: {fileID: 1025710250922460413}
+  - component: {fileID: 8969835529280561198}
   - component: {fileID: 7229086483215435615}
   m_Layer: 5
   m_Name: Delete Player Button
@@ -196,6 +197,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8969835529280561198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513616485585129199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02aee65bea83323448a199f75affdf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayerButtonData: {fileID: 3052708184346385240}
+  myPlayer:
+    playerName: 
+    playerID: 0
+  myTeam:
+    teamName: 
+    teamID: 0
+    teamPlayers: []
+    teamScore: 0
+  addPlayerButton: {fileID: 0}
+  parentPlayerButton: {fileID: 5672609904731092277}
 --- !u!114 &7229086483215435615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,11 +259,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1025710250922460413}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8969835529280561198}
+        m_TargetAssemblyTypeName: DeletePlayerButtonScript, Assembly-CSharp
+        m_MethodName: DeletePlayerWhenPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3144515711395110951
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7046955239335826874}
   - component: {fileID: 1956577459261961614}
+  - component: {fileID: 6900448513247057964}
   - component: {fileID: 950061408049562251}
   m_Layer: 5
   m_Name: PlayerName Text
@@ -285,6 +322,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3144515711395110951}
   m_CullTransparentMesh: 1
+--- !u!114 &6900448513247057964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144515711395110951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f4bbe67a0fb8f42a2a08d58cd3f9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mytext: 
 --- !u!114 &950061408049562251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3260176309882630412}
   - component: {fileID: 2326471278375236140}
+  - component: {fileID: 3052708184346385240}
   - component: {fileID: 8150486282566680041}
   - component: {fileID: 3025741543682389478}
   - component: {fileID: 3898865738060305764}
@@ -424,6 +475,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5672609904731092277}
   m_CullTransparentMesh: 1
+--- !u!114 &3052708184346385240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672609904731092277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18029fd8d6d9e242804d26a7491dab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPosition: 0
+  myPlayerID: 0
+  myTeamID: 0
+  myTeam:
+    teamName: 
+    teamID: 0
+    teamPlayers: []
+    teamScore: 0
+  myPlayer:
+    playerName: 
+    playerID: 0
 --- !u!114 &8150486282566680041
 MonoBehaviour:
   m_ObjectHideFlags: 0

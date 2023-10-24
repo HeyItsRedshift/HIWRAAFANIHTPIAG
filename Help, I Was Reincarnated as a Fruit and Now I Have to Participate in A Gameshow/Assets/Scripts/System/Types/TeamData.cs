@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamData : MonoBehaviour
+
+[System.Serializable]
+public class TeamData 
 {
     //Variables that defnie the "TeamData" type
-    public string teamName;
-    public int teamID;
-    public List<PlayerData> teamPlayers = new List<PlayerData> { };
-    public int teamScore;
+public string teamName;
+public int teamID;
+public List<PlayerData> teamPlayers = new List<PlayerData> { };
+public int teamScore;
 
 
 
-    // Constructor to initialize the Minigame
+    // Constructor to initialize the TeamData
     public TeamData(string addteamName, int addteamID)
     {
         teamName = addteamName;

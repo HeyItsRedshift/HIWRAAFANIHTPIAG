@@ -19,8 +19,15 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     #endregion
 
 
+    #region  Teams
+    [SerializeField] public List<TeamData> teamlist = new List<TeamData> { };
+                     public TeamData team1;
+                     public TeamData team2;
+    public PlayerData player1A;
+    public PlayerData player2A;
 
-    public List<TeamData> teamlist = new List<TeamData> { };
+
+    #endregion
 
 
     #region Minigames Related Variables 
@@ -37,9 +44,11 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     private void Awake()
     {
-
-        
-       
+        player1A = new PlayerData("me",1);
+        team1 = new TeamData("team 1", 1);
+        team1.teamPlayers.Add(player1A);
+        team2 = new TeamData("team 1", 2);
+        teamlist.Add(team1);
         tracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
         //Keeps the gameobject holding this script active between scenes
         DontDestroyOnLoad(this.gameObject);

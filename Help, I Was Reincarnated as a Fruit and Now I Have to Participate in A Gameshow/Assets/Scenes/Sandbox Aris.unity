@@ -5375,6 +5375,10 @@ PrefabInstance:
       propertyPath: myPosition
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3052708184346385240, guid: 3c152e8ffdb491b449edb3ad4cfb1ed3, type: 3}
+      propertyPath: myTeam.teamName
+      value: tea
+      objectReference: {fileID: 0}
     - target: {fileID: 3260176309882630412, guid: 3c152e8ffdb491b449edb3ad4cfb1ed3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

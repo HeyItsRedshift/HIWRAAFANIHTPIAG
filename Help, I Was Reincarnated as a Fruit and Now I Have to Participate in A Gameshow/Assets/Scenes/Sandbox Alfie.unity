@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiText: {fileID: 1860443850}
   typeSpeed: 0.1
-  spedUpTypeSpeed: 0.05
+  spedUpTypeSpeed: -0.51
   textEntries:
   - Hello how are you1214214134134141241415551541
   - Hello how are youOIUPOOPIUOIUOUUOIUOI

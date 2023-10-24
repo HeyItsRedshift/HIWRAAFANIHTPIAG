@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DeletePlayerButtonScript : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class DeletePlayerButtonScript : MonoBehaviour
 
                 Vector3 buttonPosition = playerButton.transform.position;
                 buttonPosition.y += 60f;
-                playerButton.GetComponent<PlayerButtonData>().myPosition -= 1;
+               playerButton.GetComponent<PlayerButtonData>().myPosition -= 1;
                 playerButton.transform.position = buttonPosition;
 
             }
@@ -57,6 +58,7 @@ public class DeletePlayerButtonScript : MonoBehaviour
 
         }
         //PersistentGlobalGameTracker.tracker.teamlist
+        EventSystem.current.SetSelectedGameObject(addPlayerButton);
         Destroy(parentPlayerButton);
     
     }

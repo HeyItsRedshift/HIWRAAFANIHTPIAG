@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TeamSelect : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class TeamSelect : MonoBehaviour
     int newPlayerRefID;
     public int playerMadeCount;
     Canvas canvas;
+    GameObject teamSelectionParent;
     GameObject playerButtonText;
     GameObject deletePlayerButton;
     GameObject renamePlayerButton; 
@@ -20,21 +22,22 @@ public class TeamSelect : MonoBehaviour
         
         //Find the canvas in the scene and assigns it to the canvas field
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        //Find the prefab in the resources folder and assigns it to the playerButton field
-        playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
+        teamSelectionParent = GameObject.Find("TeamSelection").gameObject;
+
+//Find the prefab in the resources folder and assigns it to the playerButton field
+playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
          
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        playerMadeCount = this.gameObject.GetComponent<AddPlayerButtonReferences>().myTeam.teamPlayers.Count;
     }
 
     //This is a function attached to the add player game object (AddPlayerButtonReferences) and it's called by the
   public void AddNewPlayerOnPress()
     
-        //need to add: Reference of this button to delete buttons and then they can also manage the "PlayerMadeCount" and they can activate this button
         //Need to add autoselect of this button after a press
         //Need to pass all the references
         //Need to create the playerdata and assign them in the team inside the PGGT
@@ -44,11 +47,11 @@ public class TeamSelect : MonoBehaviour
         if (playerMadeCount < 6)
         {
 
-           
-            //Add a count to how many players this button has created to limit it to 6 players per team.
-            playerMadeCount += 1;
-            //Creating the Transformation information for the Instantiation
-            Vector3 position = transform.position;
+             //Add a count to how many players this button has created to limit it to 6 players per team.
+
+             // playerMadeCount += 1;
+             //Creating the Transformation information for the Instantiation
+             Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
             //Getting a reference to the team this PlayerButton works for
             TeamData currentTeam;
@@ -60,7 +63,7 @@ public class TeamSelect : MonoBehaviour
             GameObject instantiatedButton = Instantiate(playerButton, position, rotation);
             allCreatedPlayers.Add(instantiatedButton);
             //Assigning the canvas as a parent to the button so it's rendered properly
-            instantiatedButton.transform.SetParent(canvas.transform, false);
+            instantiatedButton.transform.SetParent(teamSelectionParent.transform, false);
             //Setting the position of the PlayerButton to the right place
             Vector3 newPlayerPos = position;
             newPlayerPos.y += 30;
@@ -70,7 +73,7 @@ public class TeamSelect : MonoBehaviour
             position.y -= 60.0f;
             this.gameObject.transform.position = position;
 
-            instantiatedButton.GetComponent<PlayerButtonData>().myPosition = playerMadeCount;
+            instantiatedButton.GetComponent<PlayerButtonData>().myPosition = playerMadeCount+1;
             foreach (PlayerData player in currentTeam.teamPlayers)
             {
                 if (player.playerID == newPlayerRefID) { newPlayerRef = player; }
@@ -104,15 +107,18 @@ public class TeamSelect : MonoBehaviour
             instantiatedButton.GetComponent<PlayerButtonData>().myTeamID = currentTeam.teamID;
 
             //If it reaches the 6 players created during this creation, it makes the button inactive (still in the scene) in order to avoid creating to0 many players
-            if (playerMadeCount >= 6) { this.gameObject.SetActive(false); }
+            if (playerMadeCount >= 5) { this.gameObject.SetActive(false); EventSystem.current.SetSelectedGameObject(deletePlayerButton); }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(this.gameObject);
+            }
 
 
 
-         
+
 
             //object reference not set to an instant of an object
             playerButtonText.GetComponent<ConnectNametoPGGT>().myPlayerButtonData = instantiatedButton.GetComponent<PlayerButtonData>();
-
             // playerButtonText.GetComponent<ConnectNametoPGGT>().mytext =
 
 

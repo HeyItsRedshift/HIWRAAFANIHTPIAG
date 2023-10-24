@@ -45,8 +45,11 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     private void Awake()
     {
         player1A = new PlayerData("me",1);
+        player2A = new PlayerData("me", 2);
         team1 = new TeamData("team 1", 1);
         team1.teamPlayers.Add(player1A);
+        team1.teamPlayers.Add(player2A);
+
         team2 = new TeamData("team 1", 2);
         teamlist.Add(team1);
         tracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
@@ -96,10 +99,6 @@ public class PersistentGlobalGameTracker : MonoBehaviour
         }
     }
 
-    public void changeName(string newChange, int indexOfNameToBeChanged)
-    { 
-    
-    }
 
     public void IncreaseRounds()
     {

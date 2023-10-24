@@ -37,6 +37,8 @@ public class ConnectNametoPGGT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        myTeam = myPlayerButtonData.myTeam;
+        myPlayer = myPlayerButtonData.myPlayer;
         if (!nameAqcuired) {
             if (myTeam.teamPlayers.Count > 0)
             {
@@ -45,25 +47,19 @@ public class ConnectNametoPGGT : MonoBehaviour
                     int randomIndex = Random.Range(0, fruits.Length);
                     mytext = fruits[randomIndex];
                     uniqueFruit = true;
-                    print("reached leng" + myTeam.teamPlayers.Count);
                     foreach (PlayerData player in myTeam.teamPlayers)
                     {
-                        print("reached2");
                         if (player.playerName == mytext) { uniqueFruit = false; print("reached3"); }
-                        print("reached4");
                     }
-                    print("reached5");
                 }
             }
         }
-        myTeam = myPlayerButtonData.myTeam;
-        myPlayer = myPlayerButtonData.myPlayer;
+
 
         this.gameObject.GetComponent<TMP_Text>().text = mytext;
 
         myPlayer.playerName = mytext;
 
-        print(" leng" + myTeam.teamPlayers.Count);
 
     }
 }

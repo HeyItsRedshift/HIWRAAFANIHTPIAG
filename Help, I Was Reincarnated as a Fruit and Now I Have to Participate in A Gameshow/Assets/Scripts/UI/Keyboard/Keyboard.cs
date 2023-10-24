@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+
 
 public class Keyboard : MonoBehaviour
+
 {
     [Header("Elements")]
     [SerializeField] private RectTransform rectTransform;
@@ -24,7 +29,7 @@ public class Keyboard : MonoBehaviour
     [SerializeField] private float keyboardHeight = 300f;
 
     private List<Keys> allKeys = new List<Keys>();
-
+    
     void Start()
     {
         rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);

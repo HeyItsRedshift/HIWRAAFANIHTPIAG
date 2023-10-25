@@ -9,6 +9,8 @@ using TMPro;
 public class Keyboard : MonoBehaviour
 
 {
+    [Header("Where u")]
+    [SerializeField] Vector3 keyScale = new Vector3(0.5f, 0.5f, 1);
     [Header("Elements")]
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Keys keyPrefab;
@@ -19,9 +21,9 @@ public class Keyboard : MonoBehaviour
     [Header("Key Settings")]
     [Range(0f, 1f)]
     [SerializeField] private float keyToLineRatio;
-    [Range(0f, 1f)]
+    [Range(-2f, 1f)]
     [SerializeField] private float keyXSpacing;
-    [Range(0f, 1f)]
+    [Range(-2f, 1f)]
     [SerializeField] private float keyYSpacingRatio = 0.1f;
 
     [Header("Keyboard Dimensions")]
@@ -32,13 +34,16 @@ public class Keyboard : MonoBehaviour
     
     void Start()
     {
-        rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);
         CreateKeys();
         PlaceKeys();
+
+
     }
 
     void Update()
     {
+
+        rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);
 
     }
 
@@ -50,6 +55,7 @@ public class Keyboard : MonoBehaviour
             {
                 string keyString = lines[i].keys[j];
                 Keys keyInstance = Instantiate(keyPrefab, rectTransform);
+                keyInstance.transform.localScale = keyScale;
                 keyInstance.SetKey(keyString);
 
                 if (keyString == "CAPS")
@@ -64,7 +70,6 @@ public class Keyboard : MonoBehaviour
 
     private void PlaceKeys()
     {
-        this.gameObject.GetComponent<KeyboardInput>().input = "";
         int lineCount = lines.Length;
         float keyWidth = keyboardHeight * keyToLineRatio / (lineCount + 1);  // Added +1 for top margin
         float keyHeight = keyWidth;
@@ -95,7 +100,7 @@ public class Keyboard : MonoBehaviour
                 if (lines[i].keys[j] == "_")
                     thisKeyWidth *= 2;
                 else if (lines[i].keys[j] == "<-")
-                    thisKeyWidth *= 1.5f;
+                    thisKeyWidth *= 1f;
 
                 float keyX = startX + (thisKeyWidth / 2);
                 startX += thisKeyWidth + xSpacing;

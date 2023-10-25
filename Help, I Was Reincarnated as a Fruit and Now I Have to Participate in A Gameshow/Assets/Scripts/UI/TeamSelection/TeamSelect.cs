@@ -12,7 +12,7 @@ public class TeamSelect : MonoBehaviour
     int newPlayerRefID;
     public int playerMadeCount;
     Canvas canvas;
-    GameObject teamSelectionParent;
+    GameObject teamParent;
     GameObject playerButtonText;
     GameObject deletePlayerButton;
     GameObject renamePlayerButton; 
@@ -22,7 +22,7 @@ public class TeamSelect : MonoBehaviour
         
         //Find the canvas in the scene and assigns it to the canvas field
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        teamSelectionParent = GameObject.Find("TeamSelection").gameObject;
+        teamParent = GameObject.Find("Team").gameObject;
 
 //Find the prefab in the resources folder and assigns it to the playerButton field
 playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
@@ -38,7 +38,6 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
     //This is a function attached to the add player game object (AddPlayerButtonReferences) and it's called by the
   public void AddNewPlayerOnPress()
     
-        //Need to add autoselect of this button after a press
         //Need to pass all the references
         //Need to create the playerdata and assign them in the team inside the PGGT
         //Need to refine perfect alignment on X at least
@@ -63,7 +62,7 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
             GameObject instantiatedButton = Instantiate(playerButton, position, rotation);
             allCreatedPlayers.Add(instantiatedButton);
             //Assigning the canvas as a parent to the button so it's rendered properly
-            instantiatedButton.transform.SetParent(teamSelectionParent.transform, false);
+            instantiatedButton.transform.SetParent(teamParent.transform, false);
             //Setting the position of the PlayerButton to the right place
             Vector3 newPlayerPos = position;
             newPlayerPos.y += 30;

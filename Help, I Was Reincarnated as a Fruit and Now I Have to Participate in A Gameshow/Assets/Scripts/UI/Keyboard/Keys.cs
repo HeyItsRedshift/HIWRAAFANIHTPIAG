@@ -8,7 +8,7 @@ public class Keys : MonoBehaviour
     [SerializeField] private TMP_Text keyText;
 
     private string keyValue;
-    private bool isCapsActive = false;
+    private bool isCapsActive = true;
 
     public void SetKey(string key)
     {

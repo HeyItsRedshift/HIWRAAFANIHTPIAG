@@ -147,4 +147,39 @@ public class PersistentGlobalGameTracker : MonoBehaviour
         return teamID;
 
     }
+
+    public TeamData findMyTeam(int myTeamID)
+    {
+        TeamData myTeam = new TeamData("",0);
+       
+        if (PersistentGlobalGameTracker.tracker.teamlist != null)
+        {
+            foreach (TeamData team in PersistentGlobalGameTracker.tracker.teamlist)
+            {
+
+                if (team.teamID == myTeamID) { myTeam = team; }
+
+            }
+            // myTeam = PersistentGlobalGameTracker.tracker.teamlist.Find(team => team.teamID == myTeamID);
+        }
+
+        return myTeam;
+    }
+    public PlayerData findMyPlayer(int myPlayerID, TeamData myTeam)
+    {
+        PlayerData myPlayer = new PlayerData("", 0);
+
+        if (PersistentGlobalGameTracker.tracker.teamlist != null)
+        {
+            foreach (PlayerData player in myTeam.teamPlayers)
+            {
+
+                if (player.playerID == myPlayerID) { myPlayer = player; }
+
+            }
+            // myTeam = PersistentGlobalGameTracker.tracker.teamlist.Find(team => team.teamID == myTeamID);
+        }
+
+        return myPlayer;
+    }
 }

@@ -49,6 +49,8 @@ public class Keyboard : MonoBehaviour
 
     private void CreateKeys()
     {
+        rectTransform.sizeDelta = new Vector2(keyboardWidth, keyboardHeight);
+
         for (int i = 0; i < lines.Length; i++)
         {
             for (int j = 0; j < lines[i].keys.Length; j++)

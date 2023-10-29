@@ -11,12 +11,18 @@ public class TeamSelect : MonoBehaviour
     PlayerData newPlayerRef;
     int newPlayerRefID;
     public int playerMadeCount;
+    public GameObject keyBoardParent;
     Canvas canvas;
-    GameObject teamParent;
+   public GameObject teamParent;
     GameObject playerButtonText;
     GameObject deletePlayerButton;
     GameObject renamePlayerButton; 
     GameObject playerButton;
+   public GameObject submitNameButton;//will need to be assigned bia code on creation
+
+    public RectTransform teamParentRect; // The parent RectTransform for the instantiated UI objects
+    public float yOffset = 0f;      // Adjust this value for vertical offset
+     float xOffset = -400f;     // Adjust this value for horizontal offset
     void Awake()
     {
         
@@ -46,31 +52,69 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
         if (playerMadeCount < 6)
         {
 
-             //Add a count to how many players this button has created to limit it to 6 players per team.
+       
+            //Add a count to how many players this button has created to limit it to 6 players per team.
 
-             // playerMadeCount += 1;
-             //Creating the Transformation information for the Instantiation
-             Vector3 position = transform.position;
+            // playerMadeCount += 1;
+            //Creating the Transformation information for the Instantiation
+            Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
             //Getting a reference to the team this PlayerButton works for
-            TeamData currentTeam;
-            currentTeam = this.gameObject.GetComponent<AddPlayerButtonReferences>().myTeam;
 
-            //Creates a new PlayerData inside the current team (which contains a list of players among other things) and then store's the player's ID in newPlayerRefID
+
+            /*  TeamData currentTeam;
+              currentTeam = this.gameObject.GetComponent<AddPlayerButtonReferences>().myTeam;
+
+              //Creates a new PlayerData inside the current team (which contains a list of players among other things) and then store's the player's ID in newPlayerRefID
+              newPlayerRefID = PersistentGlobalGameTracker.tracker.CreateNewPlayerOnTeam(currentTeam);
+              //Instantating the button and getting a referrence to it
+              GameObject instantiatedButton = Instantiate(playerButton, position, rotation);
+              allCreatedPlayers.Add(instantiatedButton);
+              //Assigning the canvas as a parent to the button so it's rendered properly
+              instantiatedButton.transform.SetParent(teamParent.transform, false);
+              //Setting the position of the PlayerButton to the right place
+              Vector3 newPlayerPos = position;
+              newPlayerPos.y += 30;
+              newPlayerPos.x -= 80;
+              instantiatedButton.transform.position = newPlayerPos;
+              //Moving the "create new button" downwards 
+              position.y -= 60.0f;
+              this.gameObject.transform.position = position;
+              */
+
+            // Getting a reference to the team this PlayerButton works for
+            TeamData currentTeam = GetComponent<AddPlayerButtonReferences>().myTeam;
+
+            // Creates a new PlayerData inside the current team and stores the player's ID
             newPlayerRefID = PersistentGlobalGameTracker.tracker.CreateNewPlayerOnTeam(currentTeam);
-            //Instantating the button and getting a referrence to it
-            GameObject instantiatedButton = Instantiate(playerButton, position, rotation);
-            allCreatedPlayers.Add(instantiatedButton);
-            //Assigning the canvas as a parent to the button so it's rendered properly
+
+            // Instantiating the button and getting a reference to it
+            GameObject instantiatedButton = Instantiate(playerButton, Vector3.zero, Quaternion.identity);
+
             instantiatedButton.transform.SetParent(teamParent.transform, false);
-            //Setting the position of the PlayerButton to the right place
-            Vector3 newPlayerPos = position;
-            newPlayerPos.y += 30;
-            newPlayerPos.x -= 80;
-            instantiatedButton.transform.position = newPlayerPos;
-            //Moving the "create new button" downwards 
-            position.y -= 60.0f;
-            this.gameObject.transform.position = position;
+
+            // Assigning the canvas as a parent to the button so it's rendered properly
+            // instantiatedButton.transform.SetParent(teamParentRect, false);
+            if (playerMadeCount == 0) { yOffset = -350; }
+            else if (playerMadeCount == 1) { yOffset = -580; }
+            else if (playerMadeCount == 2) { yOffset = -810; }
+            else if (playerMadeCount == 3) { yOffset = -1040; }
+            else if (playerMadeCount == 4) { yOffset = -1270; }
+            else if (playerMadeCount == 5) { yOffset = -1500; }
+            // Set the local position of the instantiated button based on offsets
+            RectTransform buttonTransform = instantiatedButton.GetComponent<RectTransform>();
+            Vector3 newPosition = buttonTransform.localPosition;
+            newPosition.x = xOffset;
+            newPosition.y = yOffset;
+            buttonTransform.localPosition = newPosition;
+
+            // Move the "create new button" downwards 
+         //  RectTransform buttonParentTransform = GetComponent<RectTransform>();
+        //    Vector3 buttonParentPosition = buttonParentTransform.localPosition;
+         //   buttonParentPosition.y -= yOffset;
+         //   buttonParentTransform.localPosition = buttonParentPosition;
+
+            //---------------------------------------------------------------------------------------------------
 
             instantiatedButton.GetComponent<PlayerButtonData>().myPosition = playerMadeCount+1;
             foreach (PlayerData player in currentTeam.teamPlayers)
@@ -80,6 +124,8 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
             for (int i = 0; i < instantiatedButton.transform.childCount; i++)
             {
                 //Gets a reference to the deletePlayer button gameobject by looking through all the childs and finding the one that contains "delete"
+                //Then adds all the reference the PlayerButton needs to function.
+
 
                 Transform child = instantiatedButton.transform.GetChild(i);
                 if (child.name.Contains("Delete"))
@@ -90,11 +136,17 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
                     deletePlayerButton.GetComponent<DeletePlayerButtonScript>().myPlayer = newPlayerRef;
 
                 }
-                //Gets a reference to the rename Player button gameobject by looking through all the childs and finding the one that contains "delete"
+                //Gets a reference to the rename Player button gameobject by looking through all the childs and finding the one that contains "Rename"
+                //Then adds all the reference the renamePlayerButton needs to function.
 
                 if (child.name.Contains("Rename"))
                 {
                     renamePlayerButton = child.gameObject;
+                    renamePlayerButton.GetComponent<RenamePlayer>().myPlayerID = newPlayerRef.playerID;
+                    renamePlayerButton.GetComponent<RenamePlayer>().myTeamID = currentTeam.teamID;
+                    renamePlayerButton.GetComponent<RenamePlayer>().submitNameButton = submitNameButton;
+                    renamePlayerButton.GetComponent<RenamePlayer>().keyboardParent = keyBoardParent;
+
                 }
                 if (child.name.Contains("Text"))
                 {

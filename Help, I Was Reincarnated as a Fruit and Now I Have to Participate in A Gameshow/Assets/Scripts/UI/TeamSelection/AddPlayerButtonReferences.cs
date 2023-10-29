@@ -17,15 +17,7 @@ public class AddPlayerButtonReferences : MonoBehaviour
     void Update()
     {
         //Checks and fetces a reference to the actual TeamData by using the ID.
-        if (PersistentGlobalGameTracker.tracker.teamlist != null)
-        {
-            foreach (TeamData team in PersistentGlobalGameTracker.tracker.teamlist) 
-            {
-                
-                    if (team.teamID == myTeamID) { myTeam = team; }
-
-            }
-           // myTeam = PersistentGlobalGameTracker.tracker.teamlist.Find(team => team.teamID == myTeamID);
-        }
+      myTeam =  PersistentGlobalGameTracker.tracker.findMyTeam(myTeamID);
+ 
     }
 }

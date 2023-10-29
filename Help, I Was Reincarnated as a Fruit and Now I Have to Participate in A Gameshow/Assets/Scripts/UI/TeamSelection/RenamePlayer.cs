@@ -32,6 +32,9 @@ public class RenamePlayer : MonoBehaviour
 
     public void SwitchViewToKeyboard() 
     {
+        myTeam = PersistentGlobalGameTracker.tracker.findMyTeam(myTeamID);
+        myPlayer = PersistentGlobalGameTracker.tracker.findMyPlayer(myPlayerID, myTeam);
+
 
         if (keyboardParent != null)
         {

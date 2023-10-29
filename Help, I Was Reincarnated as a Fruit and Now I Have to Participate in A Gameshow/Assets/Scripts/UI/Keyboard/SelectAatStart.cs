@@ -17,6 +17,20 @@ public class SelectAatStart : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text != null)
+        {
+            if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "a" || child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "A")
+            {
+               
+                    EventSystem.current.SetSelectedGameObject(this.gameObject);
+                   
+            
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

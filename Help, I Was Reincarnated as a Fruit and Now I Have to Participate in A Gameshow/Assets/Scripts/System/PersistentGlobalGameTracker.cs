@@ -44,14 +44,16 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     private void Awake()
     {
+
         player1A = new PlayerData("me",1);
         player2A = new PlayerData("me", 2);
         team1 = new TeamData("team 1", 1);
         team1.teamPlayers.Add(player1A);
         team1.teamPlayers.Add(player2A);
 
-        team2 = new TeamData("team 1", 2);
+        team2 = new TeamData("team 2", 2);
         teamlist.Add(team1);
+        teamlist.Add(team2);
         tracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();
         //Keeps the gameobject holding this script active between scenes
         DontDestroyOnLoad(this.gameObject);

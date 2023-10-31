@@ -13,20 +13,24 @@ public class SelectAatStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        child = this.transform.GetChild(0);
+      
 
     }
 
     private void OnEnable()
     {
-        if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text != null)
+        child = this.transform.GetChild(0);
+        if (child.gameObject != null)
         {
-            if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "a" || child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "A")
+            if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text != null)
             {
-               
+                if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "a" || child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "A")
+                {
+
                     EventSystem.current.SetSelectedGameObject(this.gameObject);
-                   
-            
+
+
+                }
             }
         }
     }
@@ -34,6 +38,7 @@ public class SelectAatStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text != null) 
         {
             if (child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "a" || child.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text == "A")
@@ -46,6 +51,7 @@ public class SelectAatStart : MonoBehaviour
             }
         }
         
-      
+         
     }
+
 }

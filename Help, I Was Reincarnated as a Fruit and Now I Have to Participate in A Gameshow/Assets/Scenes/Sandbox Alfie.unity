@@ -6166,6 +6166,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3b3c115c129184abeb92f3b24af82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2066726358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066726360}
+  - component: {fileID: 2066726359}
+  m_Layer: 0
+  m_Name: GameDictionary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2066726359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066726358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca29922d33d3e94bb2e811f6d222b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  words:
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+  - word: 
+    points: 0
+--- !u!4 &2066726360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066726358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9390078, y: -1.5104271, z: 29.22548}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115758570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,3 +6393,4 @@ SceneRoots:
   - {fileID: 1845595463}
   - {fileID: 414882528}
   - {fileID: 1297585125}
+  - {fileID: 2066726360}

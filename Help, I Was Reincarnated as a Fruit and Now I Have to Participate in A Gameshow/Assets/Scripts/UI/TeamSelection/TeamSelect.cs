@@ -69,7 +69,6 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
               newPlayerRefID = PersistentGlobalGameTracker.tracker.CreateNewPlayerOnTeam(currentTeam);
               //Instantating the button and getting a referrence to it
               GameObject instantiatedButton = Instantiate(playerButton, position, rotation);
-              allCreatedPlayers.Add(instantiatedButton);
               //Assigning the canvas as a parent to the button so it's rendered properly
               instantiatedButton.transform.SetParent(teamParent.transform, false);
               //Setting the position of the PlayerButton to the right place
@@ -82,6 +81,12 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
               this.gameObject.transform.position = position;
               */
 
+
+            Vector3 positionOffset = this.GetComponent<RectTransform>().localPosition;
+            RectTransform AddPlayerButtonTransformRect = this.GetComponent<RectTransform>();
+            positionOffset.y -= 230.0f;
+            AddPlayerButtonTransformRect.localPosition = positionOffset;
+
             // Getting a reference to the team this PlayerButton works for
             TeamData currentTeam = GetComponent<AddPlayerButtonReferences>().myTeam;
 
@@ -91,16 +96,14 @@ playerButton = Resources.Load("Prefabs/Player Buttons") as GameObject;
             // Instantiating the button and getting a reference to it
             GameObject instantiatedButton = Instantiate(playerButton, Vector3.zero, Quaternion.identity);
 
+            allCreatedPlayers.Add(instantiatedButton);
+
+
             instantiatedButton.transform.SetParent(teamParent.transform, false);
 
-            // Assigning the canvas as a parent to the button so it's rendered properly
             // instantiatedButton.transform.SetParent(teamParentRect, false);
-            if (playerMadeCount == 0) { yOffset = -350; }
-            else if (playerMadeCount == 1) { yOffset = -580; }
-            else if (playerMadeCount == 2) { yOffset = -810; }
-            else if (playerMadeCount == 3) { yOffset = -1040; }
-            else if (playerMadeCount == 4) { yOffset = -1270; }
-            else if (playerMadeCount == 5) { yOffset = -1500; }
+            yOffset = -(230 * playerMadeCount)-350 ;
+         
             // Set the local position of the instantiated button based on offsets
             RectTransform buttonTransform = instantiatedButton.GetComponent<RectTransform>();
             Vector3 newPosition = buttonTransform.localPosition;

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RenamePlayer : MonoBehaviour
+public class RenameTeam : MonoBehaviour
 {
-    public PlayerData myPlayer; 
-   public int myPlayerID; //will need to be assigned bia code on creation
+    public PlayerData myPlayer;
+    public int myPlayerID; //will need to be assigned bia code on creation
     public int myTeamID;//will need to be assigned bia code on creation
     TeamData myTeam;
     GameObject teamParent;//will need to be assigned bia code on creation
@@ -18,7 +18,7 @@ public class RenamePlayer : MonoBehaviour
     {
 
         myTeam = PersistentGlobalGameTracker.tracker.findMyTeam(myTeamID);
-        myPlayer = PersistentGlobalGameTracker.tracker.findMyPlayer(myPlayerID,myTeam);
+        myPlayer = PersistentGlobalGameTracker.tracker.findMyPlayer(myPlayerID, myTeam);
         teamParent = GameObject.Find("Team").gameObject;
         doneButton = GameObject.Find("Done Button").gameObject;
 
@@ -27,10 +27,10 @@ public class RenamePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SwitchViewToKeyboard() 
+    public void SwitchViewToKeyboard()
     {
         myTeam = PersistentGlobalGameTracker.tracker.findMyTeam(myTeamID);
         myPlayer = PersistentGlobalGameTracker.tracker.findMyPlayer(myPlayerID, myTeam);
@@ -41,12 +41,11 @@ public class RenamePlayer : MonoBehaviour
             keyboardParent.SetActive(true);
 
         }
-        submitNameButton.GetComponent<SubmitNameInputToSystem>().selectedText = SubmitNameInputToSystem.TextInput.PlayerName;
-        submitNameButton.GetComponent<SubmitNameInputToSystem>().myPlayer = myPlayer;
-        keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input = myPlayer.playerName; print(keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input);
+        submitNameButton.GetComponent<SubmitNameInputToSystem>().selectedText = SubmitNameInputToSystem.TextInput.TeamName;
+        submitNameButton.GetComponent<SubmitNameInputToSystem>().myTeam = myTeam;
+        keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input = myTeam.teamName;
         if (teamParent != null) { teamParent.SetActive(false); }
         if (doneButton != null) { doneButton.SetActive(false); }
-        print(keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input);
 
     }
 }

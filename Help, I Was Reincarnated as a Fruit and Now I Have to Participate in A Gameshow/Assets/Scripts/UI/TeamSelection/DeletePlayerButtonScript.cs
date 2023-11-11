@@ -29,20 +29,26 @@ public class DeletePlayerButtonScript : MonoBehaviour
 
         addPlayerButton.GetComponent<TeamSelect>().playerMadeCount -= 1;
         if (!addPlayerButton.activeSelf) { addPlayerButton.SetActive(true); }
-        Vector3 position = addPlayerButton.transform.position;
-        position.y += 60.0f;
-        addPlayerButton.transform.position = position;
+        Vector3 positionOffset = addPlayerButton.GetComponent<RectTransform>().localPosition;
+        RectTransform AddPlayerButtonTransformRect = addPlayerButton.GetComponent<RectTransform>();
+        positionOffset.y += 230.0f;
+
+        AddPlayerButtonTransformRect.localPosition = positionOffset;
+
+
         foreach (GameObject playerButton in addPlayerButton.GetComponent<TeamSelect>().allCreatedPlayers)
         {
             if (parentPlayerButton.GetComponent<PlayerButtonData>().myPosition <
                 playerButton.GetComponent<PlayerButtonData>().myPosition)
             {
-
-                Vector3 buttonPosition = playerButton.transform.position;
-                buttonPosition.y += 60f;
+                RectTransform buttonPlayerButtonTransform = playerButton.GetComponent<RectTransform>();
+                Vector3 buttonPositionOffset = playerButton.transform.position;
+                buttonPositionOffset.x = -400;
+                buttonPositionOffset.y = playerButton.GetComponent<RectTransform>().localPosition.y;
+                buttonPositionOffset.y += 230f;
+               
                playerButton.GetComponent<PlayerButtonData>().myPosition -= 1;
-                playerButton.transform.position = buttonPosition;
-
+                buttonPlayerButtonTransform.localPosition = buttonPositionOffset;
             }
         }
 

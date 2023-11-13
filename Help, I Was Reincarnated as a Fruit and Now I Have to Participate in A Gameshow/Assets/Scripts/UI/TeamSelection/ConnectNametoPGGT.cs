@@ -16,6 +16,7 @@ public class ConnectNametoPGGT : MonoBehaviour
     bool uniqueFruit=false;
     bool nameAqcuired = false;
     public PlayerButtonData myPlayerButtonData;
+    public TeamButtonData myTeamButtonData;
     public TeamData myTeam;
     public PlayerData myPlayer;
     public string mytext ;
@@ -24,10 +25,6 @@ public class ConnectNametoPGGT : MonoBehaviour
     {
 
 
-        myTeam = myPlayerButtonData.myTeam;
-        myPlayer = myPlayerButtonData.myPlayer;
-        
-       
       
 
         
@@ -38,35 +35,44 @@ public class ConnectNametoPGGT : MonoBehaviour
     void Update()
     {
 
-        myTeam = myPlayerButtonData.myTeam;
-        myPlayer = myPlayerButtonData.myPlayer;
-
-        if (!nameAqcuired) 
+        if (this.gameObject.name.Contains("PlayerName"))
         {
-            if (myTeam.teamPlayers.Count > 0)
+            myTeam = myPlayerButtonData.myTeam;
+            myPlayer = myPlayerButtonData.myPlayer;
+            if (!nameAqcuired)
             {
-                while (!uniqueFruit)
+                if (myTeam.teamPlayers.Count > 0)
                 {
-                    int randomIndex = Random.Range(0, fruits.Length);
-                    mytext = fruits[randomIndex];
-                    uniqueFruit = true;
-                    foreach (PlayerData player in myTeam.teamPlayers)
+                    while (!uniqueFruit)
                     {
-                        if (player.playerName == mytext) { uniqueFruit = false; print("reached3"); }
+                        int randomIndex = Random.Range(0, fruits.Length);
+                        mytext = fruits[randomIndex];
+                        uniqueFruit = true;
+                        foreach (PlayerData player in myTeam.teamPlayers)
+                        {
+                            if (player.playerName == mytext) { uniqueFruit = false; print("reached3"); }
+                        }
                     }
-                }
-                this.gameObject.GetComponent<TMP_Text>().text = mytext;
+                    this.gameObject.GetComponent<TMP_Text>().text = mytext;
 
-                myPlayer.playerName = mytext;
-                nameAqcuired = true;
+                    myPlayer.playerName = mytext;
+                    nameAqcuired = true;
+                }
+
             }
-           
+            this.gameObject.GetComponent<TMP_Text>().text = myPlayer.playerName;
+
+        }
+
+        if (this.gameObject.name.Contains("Teams"))
+        {
+            myTeam = myTeamButtonData.myTeam;
+            this.gameObject.GetComponent<TMP_Text>().text = myTeam.teamName;
+
         }
 
 
-   
 
-        this.gameObject.GetComponent<TMP_Text>().text = myPlayer.playerName;
 
     }
     

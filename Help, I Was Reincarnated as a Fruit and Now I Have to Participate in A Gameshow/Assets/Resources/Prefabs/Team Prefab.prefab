@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3550562, g: 1, b: 0.28773582, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -123,10 +123,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 0.8784314}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6701944, g: 1, b: 0.4669811, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 7637101139101427467}
   - component: {fileID: 3201582426550649657}
   - component: {fileID: 2279246710844819790}
+  - component: {fileID: 8789731083472602186}
   m_Layer: 5
   m_Name: Rename Team Button
   m_TagString: Untagged
@@ -409,8 +410,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.03773582, g: 0.036133826, b: 0.036133826, a: 1}
+    m_SelectedColor: {r: 0.3490566, g: 0.31777322, b: 0.31777322, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -425,11 +426,42 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 3201582426550649657}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8789731083472602186}
+        m_TargetAssemblyTypeName: RenameTeam, Assembly-CSharp
+        m_MethodName: SwitchViewToKeyboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8789731083472602186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109911005024013027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b90c92d750f1449815576c8907ada8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayer:
+    playerName: 
+    playerID: 0
+  myPlayerID: 0
+  myTeamID: 1
+  submitNameButton: {fileID: 439900627155177862}
+  keyboardParent: {fileID: 3582190072943144938}
 --- !u!1 &1618471507947061721
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,10 +732,10 @@ RectTransform:
   - {fileID: 3688345921292568173}
   m_Father: {fileID: 8790961050811112430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -306.4289, y: -737}
-  m_SizeDelta: {x: 157.273, y: 20.624}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -400, y: -580}
+  m_SizeDelta: {x: 157.273, y: 20.623993}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8263324851350233595
 CanvasRenderer:
@@ -844,10 +876,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2383716433571842144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 158, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1661257298424974562
 CanvasRenderer:
@@ -870,6 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerButtonData: {fileID: 2771883692750660148}
+  myTeamButtonData: {fileID: 0}
   myTeam:
     teamName: 
     teamID: 0
@@ -1040,7 +1073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.446037, y: -0.000009536743}
+  m_AnchoredPosition: {x: 25.446037, y: -0.0000076293945}
   m_SizeDelta: {x: 209.97, y: 20.624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3201885700125873326
@@ -1119,10 +1152,10 @@ RectTransform:
   - {fileID: 7917609718935039190}
   m_Father: {fileID: 8790961050811112430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -306.4289, y: -523}
-  m_SizeDelta: {x: 157.273, y: 20.624}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -400, y: -350}
+  m_SizeDelta: {x: 157.273, y: 20.623993}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3198568583416859456
 CanvasRenderer:
@@ -1467,7 +1500,7 @@ MonoBehaviour:
   myPlayerButtonData: {fileID: 8699008952256678031}
   myPlayer:
     playerName: 
-    playerID: 0
+    playerID: 2
   myTeam:
     teamName: 
     teamID: 0
@@ -1541,6 +1574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481729466815188993}
   - component: {fileID: 9219017869230535507}
+  - component: {fileID: 7527614488279733790}
   - component: {fileID: 5529225747891384203}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -1576,6 +1610,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5213394222328593166}
   m_CullTransparentMesh: 1
+--- !u!114 &7527614488279733790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213394222328593166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d9b8c847b5b5248a29e96912b0ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5529225747891384203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,6 +1879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8790961050811112430}
+  - component: {fileID: 8237009578587310139}
   m_Layer: 5
   m_Name: Team
   m_TagString: Untagged
@@ -1863,6 +1910,25 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000049114227, y: 159.2807}
   m_SizeDelta: {x: 3630.975, y: 318.56146}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8237009578587310139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236881613826941831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b4931137ba43c49b216cdf891b4df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAddPlayerButtonReferences: {fileID: 0}
+  myTeamID: 1
+  myTeam:
+    teamName: 
+    teamID: 0
+    teamPlayers: []
+    teamScore: 0
 --- !u!1 &6261168013924892098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,7 +2115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.446037, y: -0.000009536743}
+  m_AnchoredPosition: {x: 25.446037, y: -0.0000076293945}
   m_SizeDelta: {x: 209.97, y: 20.624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8260095473139711509
@@ -2205,7 +2271,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 7245829812903415837}
   m_OnClick:
     m_PersistentCalls:
@@ -2250,7 +2316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.4669776, y: -902.00006}
+  m_AnchoredPosition: {x: -17.466978, y: -902}
   m_SizeDelta: {x: 755.2, y: 171.501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2282956298668430917
@@ -3054,6 +3120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerButtonData: {fileID: 8699008952256678031}
+  myTeamButtonData: {fileID: 0}
   myTeam:
     teamName: 
     teamID: 0
@@ -3162,9 +3229,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3620105802400802318}
   - component: {fileID: 1200480596048399450}
+  - component: {fileID: 680134016374021698}
   - component: {fileID: 308533835001637170}
   m_Layer: 5
-  m_Name: Teams Text
+  m_Name: Teams Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3184,10 +3252,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8184365943838010305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.25800002, y: 0}
+  m_AnchorMax: {x: 0.749, y: 1}
+  m_AnchoredPosition: {x: -1.0000153, y: 0}
+  m_SizeDelta: {x: 126, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1200480596048399450
 CanvasRenderer:
@@ -3196,7 +3264,30 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9164769216045883659}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
+--- !u!114 &680134016374021698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164769216045883659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f4bbe67a0fb8f42a2a08d58cd3f9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayerButtonData: {fileID: 0}
+  myTeamButtonData: {fileID: 8237009578587310139}
+  myTeam:
+    teamName: 
+    teamID: 1
+    teamPlayers: []
+    teamScore: 0
+  myPlayer:
+    playerName: 
+    playerID: 0
+  mytext: 
 --- !u!114 &308533835001637170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,7 +3371,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.000015247728, y: 0, z: 0, w: 0}
+  m_margin: {x: 63.722134, y: 0, z: 62.144825, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

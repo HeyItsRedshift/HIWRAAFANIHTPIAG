@@ -23,8 +23,12 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     [SerializeField] public List<TeamData> teamlist = new List<TeamData> { };
                      public TeamData team1;
                      public TeamData team2;
-    public PlayerData player1A;
-    public PlayerData player2A;
+
+    [HideInInspector] public PlayerData player1A;
+    [HideInInspector] public PlayerData player2A;
+    [HideInInspector] public PlayerData player1B;
+    [HideInInspector] public PlayerData player2B;
+
 
 
     #endregion
@@ -32,9 +36,9 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     #region Minigames Related Variables 
     //Initialize minigames individually
-    public Minigame minigame1 = new Minigame("MiniGame1", true, 0, "none");
-    public Minigame minigame2 = new Minigame("MiniGame2", true, 0, "none");
-    public Minigame minigame3 = new Minigame("MiniGame3", true, 0, "none");
+    [HideInInspector] public Minigame minigame1 = new Minigame("MiniGame1", true, 0, "none");
+    [HideInInspector] public Minigame minigame2 = new Minigame("MiniGame2", true, 0, "none");
+    [HideInInspector] public Minigame minigame3 = new Minigame("MiniGame3", true, 0, "none");
     //Creates an empty list that will hold all minigames.
     public List<Minigame> allMinigames = new List<Minigame> { };
     //Creates an empty list to add the slected games later on for possible itterations, when the UpdateSelectedMinigames() Method is called
@@ -44,14 +48,18 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     private void Awake()
     {
-
+        player1B = new PlayerData("me", 3);
+        player2B = new PlayerData("me", 4);
         player1A = new PlayerData("me",1);
         player2A = new PlayerData("me", 2);
         team1 = new TeamData("team 1", 1);
+        team2 = new TeamData("team 2", 2);
+        team2.teamPlayers.Add(player1B);
+
+        team2.teamPlayers.Add(player2B);
         team1.teamPlayers.Add(player1A);
         team1.teamPlayers.Add(player2A);
 
-        team2 = new TeamData("team 2", 2);
         teamlist.Add(team1);
         teamlist.Add(team2);
         tracker = this.gameObject.GetComponent<PersistentGlobalGameTracker>();

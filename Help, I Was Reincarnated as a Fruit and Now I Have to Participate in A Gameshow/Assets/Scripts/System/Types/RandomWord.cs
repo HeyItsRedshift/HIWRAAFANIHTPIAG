@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro; // Make sure to include this for TextMeshPro
-using System; // For System.Random
 
 public class YourGameScript : MonoBehaviour
 {
@@ -40,7 +39,8 @@ public class YourGameScript : MonoBehaviour
 
     string GetRandomDescriptionMethod()
     {
-        int index = random.Next(descriptionMethods.Length);
-        return descriptionMethods[index];
+        int index2 = Random.RandomRange(0,descriptionMethods.Length);
+        //int index = random.Next(descriptionMethods.Length);
+        return descriptionMethods[index2];
     }
 }

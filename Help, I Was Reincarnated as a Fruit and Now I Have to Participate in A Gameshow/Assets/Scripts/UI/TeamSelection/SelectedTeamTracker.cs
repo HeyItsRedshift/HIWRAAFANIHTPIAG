@@ -20,8 +20,7 @@ public class SelectedTeamTracker : MonoBehaviour
     {
         foreach (GameObject team in allAddedTeams) 
         {
-            print(team.name);
-            print(currentTeamIndex);
+
         }
     }
 

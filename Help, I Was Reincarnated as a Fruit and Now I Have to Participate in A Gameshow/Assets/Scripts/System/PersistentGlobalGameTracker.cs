@@ -48,10 +48,10 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     private void Awake()
     {
-        player1B = new PlayerData("me", 3);
-        player2B = new PlayerData("me", 4);
-        player1A = new PlayerData("me",1);
-        player2A = new PlayerData("me", 2);
+        player1B = new PlayerData("Banana", 3);
+        player2B = new PlayerData("Strawberry", 4);
+        player1A = new PlayerData("Orange",1);
+        player2A = new PlayerData("Apple", 2);
         team1 = new TeamData("team 1", 1);
         team2 = new TeamData("team 2", 2);
         team2.teamPlayers.Add(player1B);

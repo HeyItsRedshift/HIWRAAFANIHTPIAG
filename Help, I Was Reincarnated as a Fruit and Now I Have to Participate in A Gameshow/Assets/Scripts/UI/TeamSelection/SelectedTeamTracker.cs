@@ -7,7 +7,7 @@ public class SelectedTeamTracker : MonoBehaviour
     public GameObject team1;
     public GameObject team2;
     public GameObject emptyTeam;
-    public static List<GameObject> allAddedTeams = new List<GameObject> { };
+  [SerializeField]  public static List<GameObject> allAddedTeams = new List<GameObject> { };
     public static int currentTeamIndex = 0;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,11 @@ public class SelectedTeamTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (GameObject team in allAddedTeams) 
+        {
+            print(team.name);
+            print(currentTeamIndex);
+        }
     }
 
 

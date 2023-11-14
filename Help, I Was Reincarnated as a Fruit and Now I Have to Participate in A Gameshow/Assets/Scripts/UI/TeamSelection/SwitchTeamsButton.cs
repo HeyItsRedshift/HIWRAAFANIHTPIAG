@@ -13,8 +13,7 @@ public class SwitchTeamsButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(SelectedTeamTracker.allAddedTeams.Count);
-        print(SelectedTeamTracker.currentTeamIndex);
+ 
     }
 
    public void TeamSwitchOnPress() 

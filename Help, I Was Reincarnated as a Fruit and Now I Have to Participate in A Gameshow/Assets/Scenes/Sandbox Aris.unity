@@ -1768,7 +1768,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 14.76, y: 10.618714, z: 10.618714}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2041524523}
   - {fileID: 183451219}
@@ -4866,7 +4866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1205627715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6701,11 +6701,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7801029233460464445, guid: 7bfb38bb9d8ca054f8ec90b38edfbad7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8178836479753243451, guid: 7bfb38bb9d8ca054f8ec90b38edfbad7, type: 3}
       propertyPath: myTeamID
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184365943838010305, guid: 7bfb38bb9d8ca054f8ec90b38edfbad7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8237009578587310139, guid: 7bfb38bb9d8ca054f8ec90b38edfbad7, type: 3}
       propertyPath: myTeamID
@@ -8585,13 +8589,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1403671782}
+    - target: {fileID: 3452431896980979363, guid: 3fa726374a2b7214d9f617d349ee7873, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3620866834650816095, guid: 3fa726374a2b7214d9f617d349ee7873, type: 3}
       propertyPath: m_Name
       value: Team Prefab 1
       objectReference: {fileID: 0}
     - target: {fileID: 3620866834650816095, guid: 3fa726374a2b7214d9f617d349ee7873, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4216155606166410193, guid: 3fa726374a2b7214d9f617d349ee7873, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp

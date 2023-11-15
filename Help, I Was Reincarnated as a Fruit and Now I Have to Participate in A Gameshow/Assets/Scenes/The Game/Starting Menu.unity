@@ -3411,8 +3411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9364d7cd873240488047455b72ee8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentPlayers: []
+  CurrentTeam: []
   currentRound: 0
   numberOfRounds: 3
+  currentMinigameRound: 0
   counterHolder: {fileID: 0}
   teamlist: []
   team1:
@@ -3441,16 +3444,19 @@ MonoBehaviour:
     minigameName: Heads up
     selected: 1
     highScore: 0
+    maxPlayers: 2
     mVP: none
   minigame2:
     minigameName: Memory
     selected: 1
     highScore: 0
+    maxPlayers: 2
     mVP: none
   minigame3:
     minigameName: Rythm
     selected: 1
     highScore: 0
+    maxPlayers: 2
     mVP: none
   allMinigames: []
   selectedMinigames: []
@@ -5402,6 +5408,7 @@ GameObject:
   - component: {fileID: 966430375}
   - component: {fileID: 966430374}
   - component: {fileID: 966430373}
+  - component: {fileID: 966430376}
   - component: {fileID: 966430372}
   m_Layer: 5
   m_Name: Start Game Button
@@ -5457,6 +5464,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1122170247}
         m_TargetAssemblyTypeName: SetUpScreenUIEvents, Assembly-CSharp
         m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 966430376}
+        m_TargetAssemblyTypeName: TBDEleted, Assembly-CSharp
+        m_MethodName: onPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5524,6 +5543,18 @@ RectTransform:
   m_AnchoredPosition: {x: -14, y: -488.98184}
   m_SizeDelta: {x: 120.526, y: 30}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &966430376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966430371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d0b6520a03dd249a26ce17f7583acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &975192884
 PrefabInstance:
   m_ObjectHideFlags: 0

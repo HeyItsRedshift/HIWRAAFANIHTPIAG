@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 
 
@@ -10,9 +11,14 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     //This Script will be storing and handling all game information that is persistent throughout the scenes, like Scores, remaining rounds, MVPS, a list of data type minigame and each minigame, etc
     #region Public Variables
     public List<PlayerData> CurrentPlayers;
+    public Minigame currentMinigame;
+    public TeamData CurrentTeam;
     [SerializeField] public int currentRound = 0;
     [SerializeField] public int numberOfRounds = 3;
-    public int currentMinigameRound = 0;
+    public int currentMinigameRound = 1;
+
+   public List<Tuple<TeamData, List<PlayerData>>> teamPlayerPairsForThisMinigame = new List<Tuple<TeamData, List<PlayerData>>>();
+
     #endregion
 
     #region References
@@ -46,9 +52,9 @@ public class PersistentGlobalGameTracker : MonoBehaviour
 
     #region Minigames Related Variables 
     //Initialize minigames individually
-    [HideInInspector] public Minigame minigame1 = new Minigame("MiniGame1", true, 0, "none");
-    [HideInInspector] public Minigame minigame2 = new Minigame("MiniGame2", true, 0, "none");
-    [HideInInspector] public Minigame minigame3 = new Minigame("MiniGame3", true, 0, "none");
+     public Minigame minigame1 = new Minigame("Stems Up", true, 0, "none");
+    public Minigame minigame2 = new Minigame("Memory", true, 0, "none");
+     public Minigame minigame3 = new Minigame("Rhythm", true, 0, "none");
     //Creates an empty list that will hold all minigames.
     public List<Minigame> allMinigames = new List<Minigame> { };
     //Creates an empty list to add the slected games later on for possible itterations, when the UpdateSelectedMinigames() Method is called

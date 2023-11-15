@@ -13,6 +13,11 @@ public class RandomWord : MonoBehaviour
     public TextMeshProUGUI instructionText; // Text for "Press X if you guessed right" instruction
     public TextMeshProUGUI totalPointsText;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI TotalPointsText;
+    public TextMeshProUGUI WordText;
+    public TextMeshProUGUI DescribeText;
+    public TextMeshProUGUI CategoryText;
+    public TextMeshProUGUI skipInstructions;
     private WordGuessingGame guessingGame;
     private string[] descriptionMethods = new string[] { "sounds", "charade", "one word" };
     private System.Random random = new System.Random();
@@ -26,16 +31,63 @@ public class RandomWord : MonoBehaviour
     public Animator animator3;
     private bool isTimeRunningOut = false;
     public Animator animator4;
+    public TypewriterEffect typewriterEffect;
+    public GameObject typewriterTextGameObject;
     void Start()
     {
+        HideUIElements();
+        typewriterEffect.OnAllEntriesCompleted += StartGame;
+    }
+    void HideUIElements()
+    {
+        wordText.gameObject.SetActive(false);
+        categoryText.gameObject.SetActive(false);
+        describeText.gameObject.SetActive(false);
+        skipsText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
+        instructionText.gameObject.SetActive(false);
+        totalPointsText.gameObject.SetActive(false);
+        pointsText.gameObject.SetActive(false);
+        TotalPointsText.gameObject.SetActive(false);
+        WordText.gameObject.SetActive(false);
+        DescribeText.gameObject.SetActive(false);
+        CategoryText.gameObject.SetActive(false);
+        skipInstructions.gameObject.SetActive(false);
+    }
+    void StartGame()
+    {
+        // Make UI elements visible or initialize them for the game start
+        wordText.gameObject.SetActive(true);
+        categoryText.gameObject.SetActive(true);
+        describeText.gameObject.SetActive(true);
+        skipsText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(false); // Game over text should still be hidden
+        instructionText.gameObject.SetActive(true);
+        totalPointsText.gameObject.SetActive(true);
+        pointsText.gameObject.SetActive(true);
+        TotalPointsText.gameObject.SetActive(true);
+        WordText.gameObject.SetActive(true);
+        DescribeText.gameObject.SetActive(true);
+        CategoryText.gameObject.SetActive(true);
+        skipInstructions.gameObject.SetActive(true);
+        // Start the game logic
         guessingGame = new WordGuessingGame();
         DisplayRandomWord();
         UpdateSkipsText();
-        UpdateInstructionText(true); // Set the instruction text at the start
-        gameOverText.gameObject.SetActive(false); // Hide game over text initially
+        UpdateInstructionText(true);
         totalPointsText.text = $"{totalPoints} ";
+        timer = 30f; // Reset and start the timer
+        if (typewriterTextGameObject!=null)
+        {
+            typewriterTextGameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("TypewriterEffect is not assigned you idiot");
+        }
     }
-
     void Update()
     {
         if (!isGameOver)
@@ -58,6 +110,7 @@ public class RandomWord : MonoBehaviour
             // Check for input to generate a new word
             if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
             {
+                GameWord randomWord = guessingGame.ChooseRandomWord();
                 AccumulatePoints(DisplayRandomWord().Points);
                 animator.SetTrigger("pointAdded");
                 animator2.SetTrigger("isPointAdded");
@@ -80,35 +133,33 @@ public class RandomWord : MonoBehaviour
 
     GameWord DisplayRandomWord()
     {
-        GameWord randomWord = guessingGame.ChooseRandomWord();
+        GameWord randomWord = guessingGame.ChooseRandomWord(); // This line was repeated inside the if block
 
         if (wordText != null)
         {
             wordText.text = randomWord.Word;
+            SetWordColorByDifficulty(randomWord.Difficulty);
         }
-           
         else
         {
             Debug.LogError("wordText is not assigned in the Inspector");
         }
-          
+
 
         if (categoryText != null)
         {
             categoryText.text = randomWord.Category;
         }
-
         else
         {
             Debug.LogError("categoryText is not assigned in the Inspector");
         }
-           
+
 
         if (describeText != null)
         {
             describeText.text = GetRandomDescriptionMethod();
         }
-
         else
         {
             Debug.LogError("describeText is not assigned in the Inspector");
@@ -116,7 +167,7 @@ public class RandomWord : MonoBehaviour
 
         return randomWord;
     }
-   
+
     string GetRandomDescriptionMethod()
     {
         int index = random.Next(descriptionMethods.Length);
@@ -144,8 +195,25 @@ public class RandomWord : MonoBehaviour
         }
          
     }
+    private void SetWordColorByDifficulty(string difficulty)
+    {
+        switch (difficulty)
+        {
+            case "Easy":
+                wordText.color = Color.green;
+                break;
+            case "Medium":
+                wordText.color = Color.blue;
+                break;
+            case "Hard":
+                wordText.color = Color.red;
+                break;
+            default:
+                wordText.color = Color.black; // Default color if difficulty is not set
+                break;
+        }
+    }
 
-   
     void UpdateTimerText()
     {
         if (timerText != null)

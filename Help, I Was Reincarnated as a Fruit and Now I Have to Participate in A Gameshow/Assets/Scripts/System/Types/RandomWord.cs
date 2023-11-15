@@ -11,7 +11,7 @@ public class RandomWord : MonoBehaviour
     public TextMeshProUGUI timerText; // Text for displaying the timer
     public TextMeshProUGUI gameOverText; // Text for displaying "GAME OVER" and points
     public TextMeshProUGUI instructionText; // Text for "Press X if you guessed right" instruction
-
+    public TextMeshProUGUI totalPointsText;
     private WordGuessingGame guessingGame;
     private string[] descriptionMethods = new string[] { "sounds", "charade", "one word" };
     private System.Random random = new System.Random();
@@ -20,6 +20,7 @@ public class RandomWord : MonoBehaviour
     private const int maxSkips = 3; // Maximum number of skips allowed
     private float timer = 30f; // 30 seconds timer
     private bool isGameOver = false;
+    private Animator animator;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class RandomWord : MonoBehaviour
         UpdateSkipsText();
         UpdateInstructionText(true); // Set the instruction text at the start
         gameOverText.gameObject.SetActive(false); // Hide game over text initially
+        totalPointsText.text = $"{totalPoints} ";
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -46,13 +49,13 @@ public class RandomWord : MonoBehaviour
             }
 
             // Check for input to generate a new word
-            if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
             {
-                DisplayRandomWord();
+                AccumulatePoints(DisplayRandomWord().Points);
             }
 
             // Handling skip input
-            if ((Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
+            if ((Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
             {
                 skipCount++;
                 DisplayRandomWord();
@@ -61,28 +64,43 @@ public class RandomWord : MonoBehaviour
         }
     }
 
-    void DisplayRandomWord()
+    GameWord DisplayRandomWord()
     {
         GameWord randomWord = guessingGame.ChooseRandomWord();
 
         if (wordText != null)
-            wordText.text = "Word: " + randomWord.Word;
+        {
+            wordText.text = randomWord.Word;
+        }
+           
         else
+        {
             Debug.LogError("wordText is not assigned in the Inspector");
+        }
+          
 
         if (categoryText != null)
-            categoryText.text = "Category: " + randomWord.Category;
+        {
+            categoryText.text = randomWord.Category;
+        }
+
         else
+        {
             Debug.LogError("categoryText is not assigned in the Inspector");
+        }
+           
 
         if (describeText != null)
-            describeText.text = "Describe using: " + GetRandomDescriptionMethod();
-        else
-            Debug.LogError("describeText is not assigned in the Inspector");
+        {
+            describeText.text = GetRandomDescriptionMethod();
+        }
 
-        // Update points only if not skipping
-        if (skipCount <= maxSkips)
-            AccumulatePoints(randomWord.Points);
+        else
+        {
+            Debug.LogError("describeText is not assigned in the Inspector");
+        }
+
+        return randomWord;
     }
 
     string GetRandomDescriptionMethod()
@@ -95,14 +113,21 @@ public class RandomWord : MonoBehaviour
     {
         totalPoints += points;
         // Points are now accumulated but not displayed
+        totalPointsText.text = $"{totalPoints} ";
     }
 
     void UpdateSkipsText()
     {
         if (skipsText != null)
+        {
             skipsText.text = $"{maxSkips - skipCount} Skips Remaining";
+        }
+
         else
+        {
             Debug.LogError("skipsText is not assigned in the Inspector");
+        }
+         
     }
 
     void UpdateTimerText()

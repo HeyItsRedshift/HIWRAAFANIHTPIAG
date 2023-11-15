@@ -9,7 +9,7 @@ public class Minigame
         public string minigameName;
         public bool selected;
         public int highScore;
-        public int maxPlayers=1;
+        public int maxPlayers=2;
         public string mVP;
 
 

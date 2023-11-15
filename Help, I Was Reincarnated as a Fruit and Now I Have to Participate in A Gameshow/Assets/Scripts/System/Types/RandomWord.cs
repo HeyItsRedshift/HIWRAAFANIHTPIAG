@@ -12,6 +12,7 @@ public class RandomWord : MonoBehaviour
     public TextMeshProUGUI gameOverText; // Text for displaying "GAME OVER" and points
     public TextMeshProUGUI instructionText; // Text for "Press X if you guessed right" instruction
     public TextMeshProUGUI totalPointsText;
+    public TextMeshProUGUI pointsText;
     private WordGuessingGame guessingGame;
     private string[] descriptionMethods = new string[] { "sounds", "charade", "one word" };
     private System.Random random = new System.Random();
@@ -21,6 +22,10 @@ public class RandomWord : MonoBehaviour
     private float timer = 30f; // 30 seconds timer
     private bool isGameOver = false;
     public Animator animator;
+    public Animator animator2;
+    public Animator animator3;
+    private bool isTimeRunningOut = false;
+    public Animator animator4;
     void Start()
     {
         guessingGame = new WordGuessingGame();
@@ -37,6 +42,10 @@ public class RandomWord : MonoBehaviour
         {
             // Update timer
             timer -= Time.deltaTime;
+            if (timer<=10)
+            {
+                animator3.SetBool("isTimeRunningOut",true);
+            }
             UpdateTimerText();
 
             // Check for game over
@@ -51,14 +60,20 @@ public class RandomWord : MonoBehaviour
             {
                 AccumulatePoints(DisplayRandomWord().Points);
                 animator.SetTrigger("pointAdded");
+                animator2.SetTrigger("isPointAdded");
             }
 
             // Handling skip input
-            if ((Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
+            if ((Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
             {
                 skipCount++;
                 DisplayRandomWord();
                 UpdateSkipsText();
+            }
+            else if (Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.Backspace) && skipCount == maxSkips)
+            {
+
+                animator4.SetTrigger("trynnaSkipWhenNoSkip");
             }
         }
     }
@@ -113,7 +128,7 @@ public class RandomWord : MonoBehaviour
         totalPoints += points;
         // Points are now accumulated but not displayed
         totalPointsText.text = $"{totalPoints} ";
-
+        pointsText.text = $"+{points} ";
     }
 
     void UpdateSkipsText()

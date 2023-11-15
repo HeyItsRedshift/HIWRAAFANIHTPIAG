@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System; // For Action
 
 public class TypewriterEffect : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TypewriterEffect : MonoBehaviour
 
     private bool isTyping = false;
 
+    public event Action OnAllEntriesCompleted; // Event to signal completion of all entries
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && !isTyping)
@@ -22,10 +25,12 @@ public class TypewriterEffect : MonoBehaviour
             {
                 StartCoroutine(ShowText(textEntries[currentEntryIndex]));
                 currentEntryIndex++;
-                if (currentEntryIndex >= textEntries.Count)
-                {
-                    currentEntryIndex = 0;
-                }
+            }
+            else
+            {
+                // All entries have been shown, trigger the event
+                OnAllEntriesCompleted?.Invoke();
+                currentEntryIndex = 0; // Reset index if you need to show entries again later
             }
         }
     }
@@ -38,10 +43,7 @@ public class TypewriterEffect : MonoBehaviour
         foreach (char c in text)
         {
             uiText.text += c;
-
-            // Check if the ENTER key is currently being held down for sped up typing
             float currentSpeed = Input.GetKey(KeyCode.Return) ? spedUpTypeSpeed : typeSpeed;
-
             yield return new WaitForSeconds(currentSpeed);
         }
 

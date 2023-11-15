@@ -51,7 +51,7 @@ public class RandomWord : MonoBehaviour
             }
 
             // Handling skip input
-            if ((Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
+            if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)
             {
                 skipCount++;
                 DisplayRandomWord();

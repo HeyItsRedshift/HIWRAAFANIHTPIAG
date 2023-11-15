@@ -2642,7 +2642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1210367373
 Transform:
   m_ObjectHideFlags: 0
@@ -2754,9 +2754,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 726218558}
+  - {fileID: 1742012818}
   - {fileID: 1183010329}
   - {fileID: 1453011312}
-  - {fileID: 1742012818}
   - {fileID: 187376095}
   - {fileID: 161052316}
   - {fileID: 1693866039}
@@ -2858,7 +2858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1290398305
 Transform:
   m_ObjectHideFlags: 0
@@ -4353,6 +4353,7 @@ GameObject:
   - component: {fileID: 1742012821}
   - component: {fileID: 1742012820}
   - component: {fileID: 1742012819}
+  - component: {fileID: 1742012822}
   m_Layer: 5
   m_Name: wordText
   m_TagString: Untagged
@@ -4495,6 +4496,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742012817}
   m_CullTransparentMesh: 1
+--- !u!95 &1742012822
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742012817}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68b632d49bf2e3c4eb84569cc11963d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1881668209
 GameObject:
   m_ObjectHideFlags: 0

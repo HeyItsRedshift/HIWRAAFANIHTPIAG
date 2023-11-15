@@ -18,6 +18,9 @@ public class RandomWord : MonoBehaviour
     public TextMeshProUGUI DescribeText;
     public TextMeshProUGUI CategoryText;
     public TextMeshProUGUI skipInstructions;
+    public GameObject CanvasStemsUp;
+    public GameObject EndGameScreen;
+    PersistentGlobalGameTracker tracker;
     private WordGuessingGame guessingGame;
     private string[] descriptionMethods = new string[] { "sounds", "charade", "one word" };
     private System.Random random = new System.Random();
@@ -39,6 +42,7 @@ public class RandomWord : MonoBehaviour
     void Start()
     {
         HideUIElements();
+        tracker = PersistentGlobalGameTracker.tracker;
     }
     void HideUIElements()
     {
@@ -123,7 +127,7 @@ public class RandomWord : MonoBehaviour
                     AccumulatePoints(currentWord.Points);
                     animator.SetTrigger("pointAdded");
                     animator2.SetTrigger("isPointAdded");
-                   currentWord = DisplayRandomWord();
+                    currentWord = DisplayRandomWord();
                 }
             }
             
@@ -192,6 +196,7 @@ public class RandomWord : MonoBehaviour
         // Points are now accumulated but not displayed
         totalPointsText.text = $"{totalPoints} ";
         pointsText.text = $"+{points} ";
+        tracker.currentMinigameScore = totalPoints;
     }
 
     void UpdateSkipsText()
@@ -252,7 +257,8 @@ public class RandomWord : MonoBehaviour
         if (describeText != null) describeText.text = "";
         if (skipsText != null) skipsText.text = "";
         if (timerText != null) timerText.text = "";
-
+        EndGameScreen.SetActive(true);
+        CanvasStemsUp.SetActive(false);
         UpdateInstructionText(false); // Clear the instruction text
 
         // Display the game over text

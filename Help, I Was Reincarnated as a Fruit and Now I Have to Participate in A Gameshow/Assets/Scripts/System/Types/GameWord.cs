@@ -34,34 +34,125 @@ public class WordGuessingGame
 
     private void InitializeWords()
     {
-        // Easy words are generally more common and simpler
-        string[] easyWords = { "Apple", "Ball", "Cat", "Dog", "Egg", "Fish", "Goat", "Hat", "Ice", "Jam", "Kite", "Lion", "Moon", "Nest", "Owl", "Pig", "Queen", "Rose", "Sun", "Tree", "Umbrella", "Van", "Watch", "Yarn", "Zebra" };
+        int easyPoints = 5;
+        int mediumPoints = 10;
+        int hardPoints = 15;
 
-        // Medium words might be less common or slightly more complex
-        string[] mediumWords = { "Angel", "Boat", "Car", "Duck", "Elephant", "Flower", "Grapes", "House", "Island", "Jewel", "Kangaroo", "Leaf", "Mountain", "Night", "Orange", "Piano", "Quilt", "Rainbow", "Snow", "Tiger", "Unicorn", "Violin", "Whale", "Xylophone", "Yo-yo" };
+        var easyWords = new Dictionary<string, string>
+         {
+            {"Apple", "Fruit"},
+            {"Ball", "Sports"},
+            {"Cat", "Animal"},
+            {"Dog", "Animal"},
+            {"Egg", "Food"},
+            {"Fish", "Animal"},
+            {"Goat", "Animal"},
+            {"Hat", "Clothing"},
+            {"Ice", "Nature"},
+            {"Jam", "Food"},
+            {"Kite", "Toy"},
+            {"Lion", "Animal"},
+            {"Moon", "Space"},
+            {"Nest", "Nature"},
+            {"Owl", "Animal"},
+            {"Pig", "Animal"},
+            {"Queen", "People"},
+            {"Rose", "Flower"},
+            {"Sun", "Space"},
+            {"Tree", "Nature"},
+            {"Umbrella", "Object"},
+            {"Van", "Vehicle"},
+            {"Watch", "Object"},
+            {"Xylophone", "Musical Instrument"},
+            {"Yarn", "Craft"},
+            {"Zebra", "Animal"}
+          };
 
-        // Hard words might be complex, less common or abstract concepts
-        string[] hardWords = { "Acorn", "Banana", "Cherry", "Date", "Eclipse", "Fjord", "Glacier", "Harbor", "Island", "Lagoon", "Marsh", "Oasis", "Peak", "Quarry", "Reef", "Shore", "Tundra", "Volcano", "Wetland", "X-ray", "Bay", "Canyon", "Delta", "Forest", "Garden" };
+
+        var mediumWords = new Dictionary<string, string>
+        {
+            {"Angel", "Mythical"},
+            {"Boat", "Vehicle"},
+            {"Car", "Vehicle"},
+            {"Duck", "Animal"},
+            {"Elephant", "Animal"},
+            {"Flower", "Nature"},
+            {"Grapes", "Fruit"},
+            {"House", "Object"},
+            {"Island", "Geography"},
+            {"Jewel", "Object"},
+            {"Kangaroo", "Animal"},
+            {"Leaf", "Nature"},
+            {"Mountain", "Geography"},
+            {"Night", "Time"},
+            {"Orange", "Fruit"},
+            {"Piano", "Musical Instrument"},
+            {"Quilt", "Craft"},
+            {"Rainbow", "Nature"},
+            {"Snow", "Nature"},
+            {"Tiger", "Animal"},
+            {"Unicorn", "Mythical"},
+            {"Violin", "Musical Instrument"},
+            {"Whale", "Animal"},
+            {"X-ray", "Science"},
+            {"Yo-yo", "Toy"}
+        };
+
+
+        var hardWords = new Dictionary<string, string>
+        {
+            {"Acorn", "Nature"},
+            {"Banana", "Fruit"},
+            {"Cherry", "Fruit"},
+            {"Date", "Fruit"},
+            {"Eclipse", "Space"},
+            {"Fjord", "Geography"},
+            {"Glacier", "Nature"},
+            {"Harbor", "Geography"},
+            {"Island", "Geography"},
+            {"Lagoon", "Geography"},
+            {"Marsh", "Nature"},
+            {"Oasis", "Geography"},
+            {"Peak", "Geography"},
+            {"Quarry", "Geography"},
+            {"Reef", "Nature"},
+            {"Shore", "Geography"},
+            {"Tundra", "Geography"},
+            {"Volcano", "Geography"},
+            {"Wetland", "Nature"},
+            {"X-ray", "Science"},
+            {"Bay", "Geography"},
+            {"Canyon", "Geography"},
+            {"Delta", "Geography"},
+            {"Forest", "Nature"},
+            {"Garden", "Nature"}
+        };
+
+
 
         // Adding easy words
         foreach (var word in easyWords)
         {
-            words.Add(new GameWord(word, 5, "Category", "Easy"));
+            words.Add(new GameWord(word.Key, easyPoints, word.Value, "Easy"));
         }
+
         // Adding medium words
         foreach (var word in mediumWords)
         {
-            words.Add(new GameWord(word, 10, "Category", "Medium"));
+            words.Add(new GameWord(word.Key, mediumPoints, word.Value, "Medium"));
         }
+
         // Adding hard words
         foreach (var word in hardWords)
         {
-            words.Add(new GameWord(word, 15, "Category", "Hard"));
+            words.Add(new GameWord(word.Key, hardPoints, word.Value, "Hard"));
         }
 
         // Fill the list for random selection
         wordsList.AddRange(words);
     }
+
+    // Continuation from Part 1...
 
     public GameWord ChooseRandomWord()
     {
@@ -79,7 +170,6 @@ public class WordGuessingGame
         return selectedWord;
     }
 
-
     // Method to add a new word
     public void AddWord(string word, int points, string category, string difficulty)
     {
@@ -91,11 +181,5 @@ public class WordGuessingGame
     }
 
     // Additional methods as needed for your game logic
-
-    // Example usage in your game:
-    // var game = new WordGuessingGame();
-    // var easyWord = game.ChooseRandomWord("Easy");
-    // var mediumWord = game.ChooseRandomWord("Medium");
-    // var hardWord = game.ChooseRandomWord("Hard");
-
 }
+

@@ -6,20 +6,30 @@ using TMPro;
 
 
 public class PersistentGlobalGameTracker : MonoBehaviour
-{    
+{
     //This Script will be storing and handling all game information that is persistent throughout the scenes, like Scores, remaining rounds, MVPS, a list of data type minigame and each minigame, etc
+    #region Public Variables
+    public List<PlayerData> CurrentPlayers;
+    [SerializeField] public int currentRound = 0;
+    [SerializeField] public int numberOfRounds = 3;
+    public int currentMinigameRound = 0;
+    #endregion
+
+    #region References
+    [HideInInspector] public GameObject counterHolder;
+    public static PersistentGlobalGameTracker tracker;
+    #endregion
 
     #region  System
-    public static PersistentGlobalGameTracker tracker;
+
     public HashSet<int> playerIDSList = new HashSet<int> { };
     public HashSet<int> teamIDSList = new HashSet<int> { };
-    [SerializeField] private int currentRound = 0;
-    [SerializeField] private int numberOfRounds = 3;
-    [HideInInspector] public GameObject counterHolder;
+
+    
     #endregion
 
 
-    #region  Teams
+    #region  TeamsPremade
     [SerializeField] public List<TeamData> teamlist = new List<TeamData> { };
                      public TeamData team1;
                      public TeamData team2;

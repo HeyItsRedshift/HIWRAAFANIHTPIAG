@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro; // Make sure to include this for TextMeshPro
 using System; // For System.Random
-
+using System.Collections;
 public class RandomWord : MonoBehaviour
 {
     public TextMeshProUGUI wordText; // Assign this in the Unity Inspector
@@ -20,8 +20,7 @@ public class RandomWord : MonoBehaviour
     private const int maxSkips = 3; // Maximum number of skips allowed
     private float timer = 30f; // 30 seconds timer
     private bool isGameOver = false;
-    private Animator animator;
-
+    public Animator animator;
     void Start()
     {
         guessingGame = new WordGuessingGame();
@@ -30,7 +29,6 @@ public class RandomWord : MonoBehaviour
         UpdateInstructionText(true); // Set the instruction text at the start
         gameOverText.gameObject.SetActive(false); // Hide game over text initially
         totalPointsText.text = $"{totalPoints} ";
-        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -52,6 +50,7 @@ public class RandomWord : MonoBehaviour
             if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
             {
                 AccumulatePoints(DisplayRandomWord().Points);
+                animator.SetTrigger("pointAdded");
             }
 
             // Handling skip input
@@ -102,18 +101,19 @@ public class RandomWord : MonoBehaviour
 
         return randomWord;
     }
-
+   
     string GetRandomDescriptionMethod()
     {
         int index = random.Next(descriptionMethods.Length);
         return descriptionMethods[index];
     }
-
+    
     void AccumulatePoints(int points)
     {
         totalPoints += points;
         // Points are now accumulated but not displayed
         totalPointsText.text = $"{totalPoints} ";
+
     }
 
     void UpdateSkipsText()
@@ -130,6 +130,7 @@ public class RandomWord : MonoBehaviour
          
     }
 
+   
     void UpdateTimerText()
     {
         if (timerText != null)
@@ -145,7 +146,7 @@ public class RandomWord : MonoBehaviour
         else
             Debug.LogError("instructionText is not assigned in the Inspector");
     }
-
+    
     void EndGame()
     {
         isGameOver = true;

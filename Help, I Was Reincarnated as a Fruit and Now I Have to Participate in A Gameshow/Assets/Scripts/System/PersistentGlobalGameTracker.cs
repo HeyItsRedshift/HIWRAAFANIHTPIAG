@@ -11,6 +11,7 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     //This Script will be storing and handling all game information that is persistent throughout the scenes, like Scores, remaining rounds, MVPS, a list of data type minigame and each minigame, etc
     #region Public Variables
     public List<PlayerData> CurrentPlayers;
+    public int currentMinigameScore;
     public Minigame currentMinigame;
     public TeamData CurrentTeam;
     [SerializeField] public int currentRound = 0;

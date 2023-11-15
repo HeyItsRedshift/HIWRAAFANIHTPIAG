@@ -76,9 +76,8 @@ public class MinigameAndTeamRoller : MonoBehaviour
 
 
     public void Tester(List<Tuple<TeamData, List<PlayerData>>> playerPools) 
-    { 
-    
-         foreach(Tuple<TeamData, List<PlayerData>> testc in playerPools)
+    {
+
         
 
 

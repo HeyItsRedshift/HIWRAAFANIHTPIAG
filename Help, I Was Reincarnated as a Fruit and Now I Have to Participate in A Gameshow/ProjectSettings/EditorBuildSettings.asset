@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/The Game/Intermediary Scene.unity
     guid: df898197aad03f14788fe18586ab11b1
+  - enabled: 1
+    path: Assets/Scenes/The Game/Rhythm.unity
+    guid: 777f15b7d8f6a3b40b96b0e2ff80edc1
+  - enabled: 1
+    path: Assets/Scenes/The Game/Memory.unity
+    guid: 004365ee2eafe254ca182733245eb9db
+  - enabled: 1
+    path: Assets/Scenes/The Game/Stems Up.unity
+    guid: 8ce5ad968d45d2f43bbc817b5261cb8d
   m_configObjects: {}

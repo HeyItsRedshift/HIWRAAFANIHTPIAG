@@ -108,7 +108,6 @@ public class MinigameAndTeamRoller : MonoBehaviour
       
         tracker.CurrentPlayers.Clear();
 
-<<<<<<< HEAD
         //Adds the team to the current team list.
         tracker.CurrentTeam = tracker.teamPlayerPairsForThisMinigame[0].Item1;
        foreach (PlayerData player in tracker.teamPlayerPairsForThisMinigame[0].Item2)
@@ -117,26 +116,18 @@ public class MinigameAndTeamRoller : MonoBehaviour
     
     }
 
-    public void Tester(List<Tuple<TeamData, List<PlayerData>>> playerP) 
+    public void Tester(List<Tuple<TeamData, List<PlayerData>>> playerP)
     {
 
         foreach (Tuple<TeamData, List<PlayerData>> testc in playerP)
         {
 
             print(testc.Item1.teamName);
-            foreach (PlayerData player in testc.Item2) 
+            foreach (PlayerData player in testc.Item2)
             {
                 print(player.playerName);
             }
         }
-=======
-    public void Tester(List<Tuple<TeamData, List<PlayerData>>> playerPools) 
-    {
-
->>>>>>> 8d2b601b62c3af749c16d0ac7f00f12b3b673659
-        
-
 
     }
-
 }

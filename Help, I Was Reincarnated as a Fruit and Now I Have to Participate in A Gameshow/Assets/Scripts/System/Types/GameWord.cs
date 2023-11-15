@@ -51,12 +51,12 @@ public class WordGuessingGame
         // Adding medium words
         foreach (var word in mediumWords)
         {
-            words.Add(new GameWord(word, 5, "Category", "Medium"));
+            words.Add(new GameWord(word, 10, "Category", "Medium"));
         }
         // Adding hard words
         foreach (var word in hardWords)
         {
-            words.Add(new GameWord(word, 5, "Category", "Hard"));
+            words.Add(new GameWord(word, 15, "Category", "Hard"));
         }
 
         // Fill the list for random selection

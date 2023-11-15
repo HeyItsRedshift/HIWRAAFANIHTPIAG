@@ -24,7 +24,8 @@ public class RandomWord : MonoBehaviour
     private int totalPoints = 0; // Points accumulator
     private int skipCount = 0; // Number of skips used
     private const int maxSkips = 3; // Maximum number of skips allowed
-    private float timer = 30f; // 30 seconds timer
+    public float timer;
+    private int timerMax = 30;
     private bool isGameOver = false;
     public Animator animator;
     public Animator animator2;
@@ -33,10 +34,11 @@ public class RandomWord : MonoBehaviour
     public Animator animator4;
     public TypewriterEffect typewriterEffect;
     public GameObject typewriterTextGameObject;
+    private bool gameStarted = false;
+    private GameWord currentWord;
     void Start()
     {
         HideUIElements();
-        typewriterEffect.OnAllEntriesCompleted += StartGame;
     }
     void HideUIElements()
     {
@@ -55,7 +57,7 @@ public class RandomWord : MonoBehaviour
         CategoryText.gameObject.SetActive(false);
         skipInstructions.gameObject.SetActive(false);
     }
-    void StartGame()
+    public void StartGame()
     {
         // Make UI elements visible or initialize them for the game start
         wordText.gameObject.SetActive(true);
@@ -74,11 +76,11 @@ public class RandomWord : MonoBehaviour
         skipInstructions.gameObject.SetActive(true);
         // Start the game logic
         guessingGame = new WordGuessingGame();
-        DisplayRandomWord();
+        currentWord = DisplayRandomWord() ;
         UpdateSkipsText();
         UpdateInstructionText(true);
         totalPointsText.text = $"{totalPoints} ";
-        timer = 30f; // Reset and start the timer
+        timer = timerMax; // Reset and start the timer
         if (typewriterTextGameObject!=null)
         {
             typewriterTextGameObject.SetActive(false);
@@ -90,7 +92,12 @@ public class RandomWord : MonoBehaviour
     }
     void Update()
     {
-        if (!isGameOver)
+        if(typewriterEffect.typeWriterFinished && !gameStarted)
+        {
+            StartGame();
+            gameStarted = true;
+        }
+        if (!isGameOver && gameStarted) 
         {
             // Update timer
             timer -= Time.deltaTime;
@@ -108,13 +115,18 @@ public class RandomWord : MonoBehaviour
             }
 
             // Check for input to generate a new word
-            if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
+            if(timer < timerMax - 0.5f)
             {
-                GameWord randomWord = guessingGame.ChooseRandomWord();
-                AccumulatePoints(DisplayRandomWord().Points);
-                animator.SetTrigger("pointAdded");
-                animator2.SetTrigger("isPointAdded");
+                if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
+                {
+                    GameWord randomWord = guessingGame.ChooseRandomWord();
+                    AccumulatePoints(currentWord.Points);
+                    animator.SetTrigger("pointAdded");
+                    animator2.SetTrigger("isPointAdded");
+                   currentWord = DisplayRandomWord();
+                }
             }
+            
 
             // Handling skip input
             if ((Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.Backspace)) && skipCount < maxSkips)

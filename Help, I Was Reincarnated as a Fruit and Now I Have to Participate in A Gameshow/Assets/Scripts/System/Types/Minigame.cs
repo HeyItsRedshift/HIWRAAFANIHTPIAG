@@ -9,7 +9,9 @@ public class Minigame
         public string minigameName;
         public bool selected;
         public int highScore;
+        public int maxPlayers=1;
         public string mVP;
+
 
         // Constructor to initialize the Minigame
         public Minigame(string name, bool isSelected, int score, string theMVP)
@@ -18,6 +20,7 @@ public class Minigame
             selected = isSelected;
             highScore = score;
             mVP = theMVP;
+          
         }
     
 }

@@ -96,6 +96,8 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (counterHolder != null)
         {
             counterHolder.GetComponent<TextMeshProUGUI>().text = numberOfRounds.ToString();

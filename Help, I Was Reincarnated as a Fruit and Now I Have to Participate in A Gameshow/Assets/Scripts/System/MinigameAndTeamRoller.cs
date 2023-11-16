@@ -32,7 +32,7 @@ public class MinigameAndTeamRoller : MonoBehaviour
                 // Add the tuple to the list
                 playerPools.Add(teamPlayerPair);
 
-
+                Destroy(this.gameObject);
             }
         }
        

@@ -20,6 +20,13 @@ public class RandomWord : MonoBehaviour
     public TextMeshProUGUI skipInstructions;
     public GameObject CanvasStemsUp;
     public GameObject EndGameScreen;
+    public TextMeshProUGUI easyWordCountText;
+    public TextMeshProUGUI mediumWordCountText;
+    public TextMeshProUGUI hardWordCountText;
+    private int easyWordCount = 0;
+    private int mediumWordCount = 0;
+    private int hardWordCount = 0;
+
     PersistentGlobalGameTracker tracker;
     private WordGuessingGame guessingGame;
     private string[] descriptionMethods = new string[] { "sounds", "charade", "one word" };
@@ -80,7 +87,8 @@ public class RandomWord : MonoBehaviour
         skipInstructions.gameObject.SetActive(true);
         // Start the game logic
         guessingGame = new WordGuessingGame();
-        currentWord = DisplayRandomWord() ;
+        currentWord = guessingGame.ChooseRandomWord();
+        DisplayRandomWord();
         UpdateSkipsText();
         UpdateInstructionText(true);
         totalPointsText.text = $"{totalPoints} ";
@@ -123,11 +131,23 @@ public class RandomWord : MonoBehaviour
             {
                 if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Return))
                 {
-                    GameWord randomWord = guessingGame.ChooseRandomWord();
-                    AccumulatePoints(currentWord.Points);
-                    animator.SetTrigger("pointAdded");
-                    animator2.SetTrigger("isPointAdded");
-                    currentWord = DisplayRandomWord();
+                    if (currentWord != null)
+                    {
+                        // Handle the correct guess
+                        HandleCorrectGuess();
+
+                        // Trigger animations
+                        animator.SetTrigger("pointAdded");
+                        animator2.SetTrigger("isPointAdded");
+
+                        // Fetch and display the next word
+                        currentWord = guessingGame.ChooseRandomWord();
+                        DisplayRandomWord();
+                    }
+                    else
+                    {
+                        Debug.LogError("No current word set.");
+                    }
                 }
             }
             
@@ -147,41 +167,22 @@ public class RandomWord : MonoBehaviour
         }
     }
 
+
     GameWord DisplayRandomWord()
     {
-        GameWord randomWord = guessingGame.ChooseRandomWord(); // This line was repeated inside the if block
-
-        if (wordText != null)
+        if (currentWord == null)
         {
-            wordText.text = randomWord.Word;
-            SetWordColorByDifficulty(randomWord.Difficulty);
-        }
-        else
-        {
-            Debug.LogError("wordText is not assigned in the Inspector");
+            Debug.LogError("No word to display.");
+            return null;
         }
 
+        // Update the UI elements for the current word
+        wordText.text = currentWord.Word;
+        categoryText.text = currentWord.Category;
+        describeText.text = GetRandomDescriptionMethod();
+        SetWordColorByDifficulty(currentWord.Difficulty);
 
-        if (categoryText != null)
-        {
-            categoryText.text = randomWord.Category;
-        }
-        else
-        {
-            Debug.LogError("categoryText is not assigned in the Inspector");
-        }
-
-
-        if (describeText != null)
-        {
-            describeText.text = GetRandomDescriptionMethod();
-        }
-        else
-        {
-            Debug.LogError("describeText is not assigned in the Inspector");
-        }
-
-        return randomWord;
+        return currentWord;
     }
 
     string GetRandomDescriptionMethod()
@@ -212,6 +213,29 @@ public class RandomWord : MonoBehaviour
         }
          
     }
+    void HandleCorrectGuess()
+    {
+        // Increment counters based on the difficulty of the current word
+        switch (currentWord.Difficulty)
+        {
+            case "Easy":
+                easyWordCount++;
+                easyWordCountText.text = $": {easyWordCount}";
+                break;
+            case "Medium":
+                mediumWordCount++;
+                mediumWordCountText.text = $": {mediumWordCount}";
+                break;
+            case "Hard":
+                hardWordCount++;
+                hardWordCountText.text = $": {hardWordCount}";
+                break;
+        }
+
+        // Accumulate points
+        AccumulatePoints(currentWord.Points);
+    }
+
     private void SetWordColorByDifficulty(string difficulty)
     {
         switch (difficulty)

@@ -27,7 +27,17 @@ public class FruitSpawner : MonoBehaviour
             if (intervalList[0].spawnFruit)
             {
                 // Instantiate the fruit at the spawn point
-                Instantiate(intervalList[0].fruitToSpawn, spawnPoint.position, spawnPoint.rotation);
+                GameObject fruit = Instantiate(intervalList[0].fruitToSpawn, spawnPoint.position, Quaternion.identity);
+
+                // Get the name of the fruit, trimming "(Clone)" if it's added to the name on instantiation
+                string fruitName = fruit.name.Replace("(Clone)", "").Trim();
+
+                // Get the FruitCutting component and set its assigned button
+                FruitCutting fruitCutting = fruit.GetComponent<FruitCutting>();
+                if (fruitCutting != null)
+                {
+                    fruitCutting.assignedButton = FruitManager.Instance.GetButtonAssignment(fruitName);
+                }
             }
 
             // Remove the first interval after processing it

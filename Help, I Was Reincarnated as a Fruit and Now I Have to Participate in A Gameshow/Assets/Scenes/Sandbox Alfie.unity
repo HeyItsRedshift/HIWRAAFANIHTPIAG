@@ -4329,7 +4329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1289570487
 Transform:
   m_ObjectHideFlags: 0
@@ -4365,7 +4365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1290398305
 Transform:
   m_ObjectHideFlags: 0
@@ -5702,6 +5702,7 @@ GameObject:
   - component: {fileID: 1563695408}
   - component: {fileID: 1563695411}
   - component: {fileID: 1563695410}
+  - component: {fileID: 1563695412}
   m_Layer: 0
   m_Name: FruitCutter1
   m_TagString: Untagged
@@ -5797,6 +5798,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1563695412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563695407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e775ce7fc33864d953e97b8e7e81dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutterTransform: {fileID: 1563695408}
+  cuttingDuration: 60
 --- !u!1 &1567065335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6492,6 +6507,7 @@ GameObject:
   - component: {fileID: 1724294771}
   - component: {fileID: 1724294774}
   - component: {fileID: 1724294773}
+  - component: {fileID: 1724294775}
   m_Layer: 0
   m_Name: FruitCutter2
   m_TagString: Untagged
@@ -6587,6 +6603,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1724294775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724294770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e775ce7fc33864d953e97b8e7e81dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutterTransform: {fileID: 1724294771}
+  cuttingDuration: 60
 --- !u!1 &1742012817
 GameObject:
   m_ObjectHideFlags: 0
@@ -7861,7 +7891,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2065871585

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4342182174739611266}
   - component: {fileID: 1520875020000285500}
   m_Layer: 0
-  m_Name: Zone 1
-  m_TagString: Untagged
+  m_Name: Zone1
+  m_TagString: FruitZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 271522380770909211}
   - component: {fileID: 8379778649398315887}
   - component: {fileID: -5715399853365011768}
+  - component: {fileID: 3536286669841322125}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Fruit
@@ -194,6 +195,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutButton: 
+--- !u!114 &3536286669841322125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844078857304748643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d6fbdb137ca3943902dd55eb03a8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignedButton: 
+  scoreForOk: 5
+  scoreForGood: 10
+  scoreForPerfect: 15
 --- !u!1 &1069027726120977563
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,8 +222,8 @@ GameObject:
   - component: {fileID: 2207017667280832926}
   - component: {fileID: 2784878105424252786}
   m_Layer: 0
-  m_Name: Zone 5
-  m_TagString: Untagged
+  m_Name: Zone5
+  m_TagString: FruitZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,8 +299,8 @@ GameObject:
   - component: {fileID: 18933221569152915}
   - component: {fileID: 1436762128174398502}
   m_Layer: 0
-  m_Name: Zone 4
-  m_TagString: Untagged
+  m_Name: Zone4
+  m_TagString: FruitZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,8 +376,8 @@ GameObject:
   - component: {fileID: 6297088072383876014}
   - component: {fileID: 5611641763966890057}
   m_Layer: 0
-  m_Name: Zone 3
-  m_TagString: Untagged
+  m_Name: Zone3
+  m_TagString: FruitZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,8 +453,8 @@ GameObject:
   - component: {fileID: 3758885016911639435}
   - component: {fileID: 2340139159634783897}
   m_Layer: 0
-  m_Name: Zone 2
-  m_TagString: Untagged
+  m_Name: Zone2
+  m_TagString: FruitZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

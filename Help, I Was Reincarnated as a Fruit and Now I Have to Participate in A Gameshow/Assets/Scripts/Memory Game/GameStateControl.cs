@@ -5,21 +5,40 @@ using UnityEngine;
 public class GameStateControl : MonoBehaviour
 {
     
-    public GameObject deck;
+    public GameObject phase1Canvas;
     MemoryGameController memoryGameController = MemoryGameController.memoryGameController;
 
 
 
     public void GameStart() 
     {
-        deck.SetActive(true);
+        phase1Canvas.SetActive(true);
         memoryGameController = MemoryGameController.memoryGameController;
         memoryGameController.AssignCardsToFruitCards();
         memoryGameController.FillFruitBasket();
         memoryGameController.AssignFruitsToFruitCards();
         memoryGameController.AssignCorrectImagesToCards();
         memoryGameController.TriggerSpawnAnimationsForAll();
+        memoryGameController.StartTimerPhase1();
 
     }
-    
+
+    public void Phase2Prep() 
+    {
+        
+        memoryGameController.TriggerFlipAnimationForAll();
+
+   
+    }
+
+    public void Phase2Start()
+    {
+
+        memoryGameController.StartTimerPhase2();
+        memoryGameController.RollForSelectedFruit();
+        memoryGameController.AssingButtonsToCards();
+        memoryGameController.EnableGuessing();
+
+    }
+
 }

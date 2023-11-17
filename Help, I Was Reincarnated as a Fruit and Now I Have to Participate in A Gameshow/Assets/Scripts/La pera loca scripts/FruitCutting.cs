@@ -40,6 +40,7 @@ public class FruitCutting : MonoBehaviour
         }
 
         ScorePoints(pointsEarned);
+        
         // Play cutting animation, sound effects, etc.
     }
 

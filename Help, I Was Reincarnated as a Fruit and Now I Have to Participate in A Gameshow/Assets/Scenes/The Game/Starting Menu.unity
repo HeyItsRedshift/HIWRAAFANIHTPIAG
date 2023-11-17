@@ -3412,6 +3412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPlayers: []
+  currentMinigameScore: 0
   currentMinigame:
     minigameName: 
     selected: 0

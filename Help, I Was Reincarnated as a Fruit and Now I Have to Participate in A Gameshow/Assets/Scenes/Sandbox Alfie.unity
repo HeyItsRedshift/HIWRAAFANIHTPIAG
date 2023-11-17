@@ -5811,7 +5811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutterTransform: {fileID: 1563695408}
-  cuttingDuration: 60
 --- !u!1 &1567065335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6616,7 +6615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutterTransform: {fileID: 1724294771}
-  cuttingDuration: 60
 --- !u!1 &1742012817
 GameObject:
   m_ObjectHideFlags: 0

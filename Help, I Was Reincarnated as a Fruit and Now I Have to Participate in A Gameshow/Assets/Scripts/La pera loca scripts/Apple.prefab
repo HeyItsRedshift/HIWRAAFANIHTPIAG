@@ -211,6 +211,7 @@ MonoBehaviour:
   scoreForOk: 5
   scoreForGood: 10
   scoreForPerfect: 15
+  animator: {fileID: 1855173208965939389, guid: a43c275fac99caa40824e23afcda6e48, type: 3}
 --- !u!1 &1069027726120977563
 GameObject:
   m_ObjectHideFlags: 0

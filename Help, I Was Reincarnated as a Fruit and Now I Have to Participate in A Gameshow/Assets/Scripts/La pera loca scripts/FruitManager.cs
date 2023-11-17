@@ -7,7 +7,7 @@ public class FruitManager : MonoBehaviour
     public static FruitManager Instance { get; private set; }
 
     private Dictionary<string, string> fruitButtonAssignments = new Dictionary<string, string>();
-    private List<string> fruitNames = new List<string> { "Apple", "Banana", "Orange", "Pear" }; // Add more fruit names as needed
+    private List<string> fruitNames = new List<string> { "Apple", "Banana", "Orange", "Pear" };
     private List<string> buttons = new List<string> { "A", "B", "X", "Y" };
 
     private void Awake()

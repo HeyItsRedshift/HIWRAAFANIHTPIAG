@@ -26,6 +26,9 @@ public class RandomWord : MonoBehaviour
     private int easyWordCount = 0;
     private int mediumWordCount = 0;
     private int hardWordCount = 0;
+    public GameObject easy;
+    public GameObject medium;
+    public GameObject hard;
 
     PersistentGlobalGameTracker tracker;
     private WordGuessingGame guessingGame;
@@ -67,6 +70,9 @@ public class RandomWord : MonoBehaviour
         DescribeText.gameObject.SetActive(false);
         CategoryText.gameObject.SetActive(false);
         skipInstructions.gameObject.SetActive(false);
+        easy.gameObject.SetActive(false);
+        medium.gameObject.SetActive(false);
+        hard.gameObject.SetActive(false);
     }
     public void StartGame()
     {
@@ -85,6 +91,9 @@ public class RandomWord : MonoBehaviour
         DescribeText.gameObject.SetActive(true);
         CategoryText.gameObject.SetActive(true);
         skipInstructions.gameObject.SetActive(true);
+        easy.gameObject.SetActive(true);
+        medium.gameObject.SetActive(true);
+        hard.gameObject.SetActive(true);
         // Start the game logic
         guessingGame = new WordGuessingGame();
         currentWord = guessingGame.ChooseRandomWord();

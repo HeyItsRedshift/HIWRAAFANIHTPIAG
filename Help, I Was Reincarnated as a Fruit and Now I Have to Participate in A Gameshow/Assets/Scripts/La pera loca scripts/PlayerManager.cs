@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         // If there are only 2 players, deactivate the second spawner
-        if (numberOfPlayers == 2)
+        if (numberOfPlayers == 3)
         {
             if (secondSpawner != null)
             {

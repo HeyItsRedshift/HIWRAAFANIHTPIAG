@@ -16,7 +16,7 @@ public class TypewriterEffect : MonoBehaviour
     private bool isTyping = false;
 
     public event Action OnAllEntriesCompleted; // Event to signal completion of all entries
-    
+
     private void Update()
     {
         if (firstTime)
@@ -28,7 +28,7 @@ public class TypewriterEffect : MonoBehaviour
                 {
                     StartCoroutine(ShowText(textEntries[currentEntryIndex]));
                     currentEntryIndex++;
-                    
+
                 }
                 else
                 {
@@ -40,8 +40,8 @@ public class TypewriterEffect : MonoBehaviour
                 }
             }
         }
-        
-       else if (Input.GetKeyDown(KeyCode.Return) && !isTyping)
+
+        else if (Input.GetKeyDown(KeyCode.Return) && !isTyping)
         {
             if (currentEntryIndex < textEntries.Count)
             {

@@ -11,21 +11,9 @@ public class FruitSpawner : MonoBehaviour
     private float spawnInterval = 0.5f; // Time interval between beats
     public float totalGameTime = 120f;
     private int fruitsSpawned = 0;
-
-    // Mapping of fruit prefab names to button names
-    private Dictionary<string, string> fruitButtonMapping = new Dictionary<string, string>
-    {
-        { "Apple", "A" },
-        { "Banana", "B" },
-        { "Orange", "X" },
-        { "Pear", "Y" }
-        // Add more mappings here if necessary
-    };
-
     private void Start()
     {
         RandomIntervalAssigner();
-
     }
 
     private void Update()
@@ -49,28 +37,6 @@ public class FruitSpawner : MonoBehaviour
 
 
 
-    // Example method to get the button name based on the type of fruit
-    private string GetButtonNameForFruit(GameObject fruit)
-    {
-        string buttonName = "";
-        if (fruit.name.Contains("Apple"))
-        {
-            buttonName = "A";
-        }
-        else if (fruit.name.Contains("Banana"))
-        {
-            buttonName = "B";
-        }
-        else if (fruit.name.Contains("Orange"))
-        {
-            buttonName = "X";
-        }
-        else if (fruit.name.Contains("Pear"))
-        {
-            buttonName = "Y";
-        }
-        return buttonName;
-    }
 
     private void GenerateSpawnIntervals()
     {
@@ -105,5 +71,5 @@ public class FruitSpawner : MonoBehaviour
             }
             startingPoint++;
         }
-    }   
+    }
 }

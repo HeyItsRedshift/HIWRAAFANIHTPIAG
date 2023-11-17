@@ -8,7 +8,7 @@ public class GameStateControl : MonoBehaviour
     public GameObject phase1Canvas;
     MemoryGameController memoryGameController = MemoryGameController.memoryGameController;
 
-
+    public void prepeGame() { }
 
     public void GameStart() 
     {
@@ -23,13 +23,7 @@ public class GameStateControl : MonoBehaviour
 
     }
 
-    public void Phase2Prep() 
-    {
-        
-        memoryGameController.TriggerFlipAnimationForAll();
 
-   
-    }
 
     public void Phase2Start()
     {
@@ -40,5 +34,7 @@ public class GameStateControl : MonoBehaviour
         memoryGameController.EnableGuessing();
 
     }
+
+
 
 }

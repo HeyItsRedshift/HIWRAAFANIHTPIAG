@@ -36,7 +36,7 @@ public class Cutter : MonoBehaviour
                     FruitCutting fruitCutting = hitCollider.GetComponentInParent<FruitCutting>();
                     if (fruitCutting != null && fruitCutting.assignedButton == buttonName)
                     {
-                        int zone = int.Parse(hitCollider.gameObject.name.Replace("Zone ", ""));
+                        int zone = int.Parse(hitCollider.gameObject.name.Replace("Zdsgsone ", ""));
                         fruitCutting.AttemptCut(buttonName, zone);
                     }
                 }

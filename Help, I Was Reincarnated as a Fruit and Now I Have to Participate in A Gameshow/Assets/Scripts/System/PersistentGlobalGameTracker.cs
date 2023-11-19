@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
+
 
 
 
@@ -59,7 +61,7 @@ public class PersistentGlobalGameTracker : MonoBehaviour
     //Creates an empty list that will hold all minigames.
     public List<Minigame> allMinigames = new List<Minigame> { };
     //Creates an empty list to add the slected games later on for possible itterations, when the UpdateSelectedMinigames() Method is called
-    [SerializeField] List<Minigame> selectedMinigames = new List<Minigame> { };
+    [SerializeField] public List<Minigame> selectedMinigames = new List<Minigame> { };
     #endregion
 
 
@@ -92,6 +94,7 @@ public class PersistentGlobalGameTracker : MonoBehaviour
         }
     }
 
+  
 
     // Update is called once per frame
     void Update()
@@ -114,7 +117,7 @@ public class PersistentGlobalGameTracker : MonoBehaviour
         }
 
     }
-
+    public void AfterScoreScreen() { if (currentMinigameRound < teamlist.Count) { currentMinigameRound++; SceneManager.LoadScene(currentMinigame.minigameName); } }
     public void UpdateSelectedMinigames()
     {
         selectedMinigames.Clear();

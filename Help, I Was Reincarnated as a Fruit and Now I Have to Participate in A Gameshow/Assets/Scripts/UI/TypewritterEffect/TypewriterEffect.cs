@@ -58,19 +58,22 @@ public class TypewriterEffect : MonoBehaviour
             }
         }
     }
-
-    public IEnumerator ShowText(string text)
-    {
-        isTyping = true;
-        uiText.text = "";
-
-        foreach (char c in text)
+  
+        public IEnumerator ShowText(string text)
         {
-            uiText.text += c;
-            float currentSpeed = Input.GetKey(KeyCode.Return) ? spedUpTypeSpeed : typeSpeed;
-            yield return new WaitForSeconds(currentSpeed);
-        }
+            isTyping = true;
+            uiText.text = "";
 
-        isTyping = false;
-    }
+            foreach (char c in text)
+            {
+                uiText.text += c;
+                float currentSpeed = Input.GetKey(KeyCode.Return) ? spedUpTypeSpeed : typeSpeed;
+                yield return new WaitForSeconds(currentSpeed);
+            }
+
+            isTyping = false;
+        }
+       
+
+   
 }

@@ -25,7 +25,7 @@ public class ChangeToFrontSideOnState : MonoBehaviour
         {
             foreach (FruitCardData fruitCard in controller.fruitCards)
             {
-                if (fruitCard.card.name == this.gameObject.transform.parent.name) { myFruit = fruitCard.fruit; print(myFruit); }
+                if (fruitCard.card.name == this.gameObject.transform.parent.name) { myFruit = fruitCard.fruit;  }
 
             }
             switch (myFruit)

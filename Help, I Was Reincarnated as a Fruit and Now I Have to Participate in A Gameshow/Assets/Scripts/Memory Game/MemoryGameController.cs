@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class MemoryGameController : MonoBehaviour
 {
+    public GameStateControl stateControl;
     public static MemoryGameController memoryGameController;
     public bool phase1StartTimer = false;
     bool phase2StartTimer = false;
     bool guessingIsEnabled = false;
     bool guessHasBeenMade = false;
     public int totalPoints;
+    bool SwapToPhase2 = false;
     private int pointsModifierP1=1;
     private int pointsModifierP2;
     public float timerPhase1;
@@ -40,9 +42,10 @@ public class MemoryGameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
         if (guessingIsEnabled) { Guess(); }
-        if (phase1StartTimer) { timerPhase1 -= Time.deltaTime; }
+        if (phase1StartTimer && timerPhase1 > 0.01f) { timerPhase1 -= Time.deltaTime; }
+        if (timerPhase1 <= 0.02f && !SwapToPhase2) { TypwriterAndSlideShow.delegeteAtTheEnd.Invoke(); SwapToPhase2 = true; }
         if (phase2StartTimer && timerPhase2>0.01f) { timerPhase2 -= Time.deltaTime; }
     }
 
@@ -89,7 +92,7 @@ public class MemoryGameController : MonoBehaviour
 
         }
     }
-
+    
 
     public void FlipCards() {
         foreach (FruitCardData fruitCard in fruitCards)
@@ -104,9 +107,9 @@ public class MemoryGameController : MonoBehaviour
         int i = Random.Range(0, selectedFruitsList.Count);
         fruitTarget = selectedFruitsList[i];
 
-    } 
+    }
 
-
+    public void ButtonsFadeOut() { foreach (FruitCardData fruitCard in fruitCards) { if (fruitCard.button != "none") { fruitCard.card.transform.Find("Button").GetComponent<Animator>().SetTrigger("ButtonFadeOut"); } } }
 
     public void AssingButtonsToCards()
     {// { "Left","Right","Up","Down","A","B","X","Y" };
@@ -213,7 +216,8 @@ public class MemoryGameController : MonoBehaviour
 
     public void EnableGuessing() { guessingIsEnabled = true; }
 
-    public void GuessRightCalculations(string theButton) {
+    public void GuessRightCalculations(string theButton) 
+    {
        string button = theButton;
          StopTimerPhase2(); totalPoints = Mathf.RoundToInt(((timerPhase1 / timerPhase1Max) + pointsModifierP1) * (((timerPhase2 / timerPhase2Max) * pointsModifierP2) + 100)); guessHasBeenMade = true;
         foreach (FruitCardData fruitCard in fruitCards)
@@ -228,7 +232,29 @@ public class MemoryGameController : MonoBehaviour
      
 
         }
+        stateControl.winTextHolder.SetActive(true);
+        stateControl.phase4TextHolder.SetActive(false);
+       TypwriterAndSlideShow.delegeteAtTheEnd += stateControl.Win;
 
+        ButtonsFadeOut();
+    }
+
+
+    public void RevealAllCards() {
+       
+        
+        foreach (FruitCardData fruitCard in fruitCards)
+        {
+
+            if (fruitCard.card.transform.Find("Image").GetComponent<Image>().sprite == spriteList[8])
+            {
+
+                fruitCard.card.transform.Find("Image").GetComponent<Animator>().SetTrigger("GuessMade");
+            }
+
+
+
+        }
     }
 
     public void GuessWrongCalculations(string theButton) 
@@ -248,54 +274,59 @@ public class MemoryGameController : MonoBehaviour
 
 
 
-        totalPoints = 0; guessHasBeenMade = true; StopTimerPhase2(); 
-    
+        totalPoints = 0; guessHasBeenMade = true; StopTimerPhase2();
+        stateControl.loseTextHolder.SetActive(true);
+        stateControl.phase4TextHolder.SetActive(false);
+        TypwriterAndSlideShow.delegeteAtTheEnd += stateControl.Lose;
+        ButtonsFadeOut();
     }
 
     public void Guess() 
     {
-       List<string> allButtons = new List<string> { "A", "B", "X", "Y" };
-        if (!guessHasBeenMade)
-        {
-            
-            foreach (string button in allButtons)
+        if (!TypwriterAndSlideShow.typing) {
+            List<string> allButtons = new List<string> { "A", "B", "X", "Y" };
+            if (!guessHasBeenMade)
             {
-                if (Input.GetButtonDown(button))
+
+                foreach (string button in allButtons)
                 {
-                    if (button == correctButton) { GuessRightCalculations(button); }
-                    else { GuessWrongCalculations(button); }
+                    if (Input.GetButtonDown(button))
+                    {
+                        if (button == correctButton) { GuessRightCalculations(button); }
+                        else { GuessWrongCalculations(button); }
+
+                    }
+
 
                 }
 
 
-            }
-
-        
-                if (Input.GetAxisRaw("Horizontal") ==1 )
+                if (Input.GetAxisRaw("Horizontal") == 1)
                 {
                     if ("Right" == correctButton) { GuessRightCalculations("Right"); }
-                else { GuessWrongCalculations("Right"); }
+                    else { GuessWrongCalculations("Right"); }
+
+                }
+                if (Input.GetAxisRaw("Horizontal") == -1)
+                {
+                    if ("Left" == correctButton) { GuessRightCalculations("Left"); }
+                    else { GuessWrongCalculations("Left"); }
+
+                }
+                if (Input.GetAxisRaw("Vertical") == -1)
+                {
+                    if ("Down" == correctButton) { GuessRightCalculations("Down"); }
+                    else { GuessWrongCalculations("Down"); }
+
+                }
+                if (Input.GetAxisRaw("Vertical") == 1)
+                {
+                    if ("Up" == correctButton) { GuessRightCalculations("Up"); }
+                    else { GuessWrongCalculations("Up"); }
+
+                }
 
             }
-            if (Input.GetAxisRaw("Horizontal") == -1)
-            {
-                if ("Left" == correctButton) { GuessRightCalculations("Left"); }
-                else { GuessWrongCalculations("Left"); }
-
-            }
-            if (Input.GetAxisRaw("Vertical") == -1)
-            {
-                if ("Down" == correctButton) { GuessRightCalculations("Down"); }
-                else { GuessWrongCalculations("Down"); }
-
-            }
-            if (Input.GetAxisRaw("Vertical") == 1)
-            {
-                if ("Up" == correctButton) { GuessRightCalculations("Up"); }
-                else { GuessWrongCalculations("Up"); }
-
-            }
-
         }
     
     }

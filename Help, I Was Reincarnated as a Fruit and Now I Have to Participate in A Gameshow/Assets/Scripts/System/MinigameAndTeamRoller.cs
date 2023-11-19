@@ -46,8 +46,8 @@ public class MinigameAndTeamRoller : MonoBehaviour
 
         InitializePlayerPools();
 
-        int CurrentMinigameIndex = UnityEngine.Random.Range(0,tracker.allMinigames.Count);
-        tracker.currentMinigame = tracker.allMinigames[CurrentMinigameIndex];
+        int CurrentMinigameIndex = UnityEngine.Random.Range(0,tracker.selectedMinigames.Count);
+        tracker.currentMinigame = tracker.selectedMinigames[CurrentMinigameIndex];
         int optPlayerNum = tracker.currentMinigame.maxPlayers;
 
         foreach (Tuple<TeamData, List<PlayerData>> pair in playerPools)

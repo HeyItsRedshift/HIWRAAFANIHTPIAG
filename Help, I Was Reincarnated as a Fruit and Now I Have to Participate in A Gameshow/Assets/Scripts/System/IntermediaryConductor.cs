@@ -18,6 +18,7 @@ public class IntermediaryConductor : MonoBehaviour
 
         if (tracker.currentRound <= tracker.numberOfRounds)
         {
+            tracker.currentMinigameRound = 1;
             roller.RollEverything();
             roller.AssignFirstTeamandPlayers();
             tracker.currentRound++;

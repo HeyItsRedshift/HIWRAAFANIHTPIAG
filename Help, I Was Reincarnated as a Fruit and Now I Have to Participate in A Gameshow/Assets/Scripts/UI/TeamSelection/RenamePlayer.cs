@@ -45,7 +45,7 @@ public class RenamePlayer : MonoBehaviour
         submitNameButton.GetComponent<SubmitNameInputToSystem>().myPlayer = myPlayer;
         keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input = myPlayer.playerName; print(keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input);
         if (teamParent != null) { teamParent.SetActive(false); }
-        if (doneButton != null) { doneButton.SetActive(false); }
+ 
         print(keyboardParent.transform.GetComponentInChildren<KeyboardInput>().input);
 
     }
